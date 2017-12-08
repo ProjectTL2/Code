@@ -16,7 +16,7 @@ public class Query {
         DBCon newCon = new DBCon();
         BasicDBObject queringUser = new BasicDBObject("Username", username);
         queringUser.put("Password", password);
-        DBCursor cursor = newCon.dbcollection.find(queringUser);
+        DBCursor cursor = newCon.dbcollection_user.find(queringUser);
         
         return cursor.hasNext();
     }
@@ -25,7 +25,7 @@ public class Query {
         DBCon newCon = new DBCon();
         BasicDBObject queringUser = new BasicDBObject("Username", username);
         
-        DBCursor cursor = newCon.dbcollection.find(queringUser);
+        DBCursor cursor = newCon.dbcollection_user.find(queringUser);
         
         return cursor.hasNext();
     }

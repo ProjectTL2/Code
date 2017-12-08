@@ -26,21 +26,12 @@ public class MainPage extends JFrame {
 
     
     public MainPage()  {
-        
-        
-        
-        
-         
-          
         initComponents();
         add_btn.setVisible(false);
-      
-     
-     
+        
         //Display Maps.
         jfxPanel = new Map().mapDisp();
-        this.getContentPane().add(jfxPanel);
-         
+        this.getContentPane().add(jfxPanel); 
         this.pack();
     }
     
@@ -87,11 +78,6 @@ public class MainPage extends JFrame {
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setForeground(new java.awt.Color(240, 240, 240));
         setSize(new java.awt.Dimension(400, 500));
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowActivated(java.awt.event.WindowEvent evt) {
-                formWindowActivated(evt);
-            }
-        });
 
         user_btn.setText("Επισκέπτης");
         user_btn.addActionListener(new java.awt.event.ActionListener() {
@@ -193,22 +179,24 @@ public class MainPage extends JFrame {
                                     .addComponent(signup_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(signin_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(279, 279, 279)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jButton1))
-                                    .addComponent(jLabel1)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(popular_rbtn)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(recent_rbtn)
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                        .addGap(279, 279, 279)
+                                        .addComponent(jLabel1))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(popular_rbtn)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(recent_rbtn)))
+                                .addGap(0, 113, Short.MAX_VALUE)))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(215, 215, 215))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -235,9 +223,9 @@ public class MainPage extends JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15)
                 .addComponent(jLabel1)
-                .addGap(67, 67, 67)
+                .addGap(106, 106, 106)
                 .addComponent(jButton1)
-                .addGap(50, 50, 50))
+                .addContainerGap())
         );
 
         pack();
@@ -285,15 +273,8 @@ public class MainPage extends JFrame {
         }
     }//GEN-LAST:event_user_btnActionPerformed
 
-    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        // TODO add your handling code here:
-    }//GEN-LAST:event_formWindowActivated
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         jLabel3.setIcon(new Images().Showimage());
-          
-          
-        
     }//GEN-LAST:event_jButton1ActionPerformed
     
     /**
