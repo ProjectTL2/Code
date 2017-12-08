@@ -1,6 +1,9 @@
 import AppObj.User;
 import DB.Images;
 import GeoLoc.Map;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javafx.embed.swing.JFXPanel;
 
@@ -123,6 +126,12 @@ public class MainPage extends JFrame {
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
             }
         });
 
@@ -262,8 +271,15 @@ public class MainPage extends JFrame {
     }//GEN-LAST:event_user_btnActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        jLabel3.setIcon(new Images().ShowImg());
+   
+            jLabel3.setIcon(new Images().ShowImg());
+        
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        
+        new SaleItem().setVisible(true);
+    }//GEN-LAST:event_jLabel3MouseClicked
     
     /**
      * @param args the command line arguments
