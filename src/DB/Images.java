@@ -28,24 +28,27 @@ public class Images {
         catch (MongoException | IOException e) {}
     }
     
-    /*
-    *
-    *Το κρατάμε για μήπως χρειαστεί.
-    *
-    public void SaveImg() throws IOException {
+    
+    
+   /*
+    public void SaveImg(String s) throws IOException {
         
         DBCon x = new DBCon();
-        
-        String newFileName = "File";
+        String newFileName  = "File";
+        String y;
         GridFS gfsPhoto = new GridFS(x.db_img, "photo");
         GridFSDBFile imageForOutput = gfsPhoto.findOne(newFileName);
         imageForOutput.writeTo("C:\\File.png");
+        y="C:\\File.png";
         System.out.println(imageForOutput);
+        
+        
     }
     */
     
    public ImageIcon ShowImg() {
-        ImageIcon imageIcon = new ImageIcon("");
+        
+        ImageIcon imageIcon = new ImageIcon("E:\\temp.jpg");
         Image image = imageIcon.getImage();
         Image newimg = image.getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH);
         imageIcon = new ImageIcon(newimg); 

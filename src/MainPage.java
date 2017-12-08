@@ -277,8 +277,7 @@ public class MainPage extends JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        
-        new SaleItem().setVisible(true);
+                new SaleItem().setVisible(true);
     }//GEN-LAST:event_jLabel3MouseClicked
     
     /**
