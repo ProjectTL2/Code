@@ -12,7 +12,7 @@ import javax.swing.ImageIcon;
 
 public class Images {
     
-    public void saveimage(String s) {
+    public void UploadImg(String s) {
         
         DBCon x = new DBCon();
         
@@ -28,7 +28,11 @@ public class Images {
         catch (MongoException | IOException e) {}
     }
     
-    public void Saveimage() throws IOException {
+    /*
+    *
+    *Το κρατάμε για μήπως χρειαστεί.
+    *
+    public void SaveImg() throws IOException {
         
         DBCon x = new DBCon();
         
@@ -38,9 +42,10 @@ public class Images {
         imageForOutput.writeTo("C:\\File.png");
         System.out.println(imageForOutput);
     }
+    */
     
-   public ImageIcon Showimage() {
-        ImageIcon imageIcon = new ImageIcon("D:\\Media\\PicturesHDD\\DORTMUND_SCHEDULE.jpg");
+   public ImageIcon ShowImg() {
+        ImageIcon imageIcon = new ImageIcon("");
         Image image = imageIcon.getImage();
         Image newimg = image.getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH);
         imageIcon = new ImageIcon(newimg); 

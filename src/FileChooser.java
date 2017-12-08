@@ -37,7 +37,7 @@ public class FileChooser extends javax.swing.JFrame {
     int returnVal = jFileChooser1.showOpenDialog(this);
     if (returnVal == jFileChooser1.APPROVE_OPTION) {
         this.dispose();
-        new Images().saveimage(jFileChooser1.getSelectedFile().getAbsolutePath());   
+        new Images().UploadImg(jFileChooser1.getSelectedFile().getAbsolutePath());   
     }
     else {
         System.out.println("File access cancelled by user.");

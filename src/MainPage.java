@@ -1,20 +1,8 @@
 import AppObj.User;
 import DB.Images;
 import GeoLoc.Map;
-import java.awt.Component;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javafx.embed.swing.JFXPanel;
-import javafx.scene.image.ImageView;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 public class MainPage extends JFrame {
     
@@ -274,7 +262,7 @@ public class MainPage extends JFrame {
     }//GEN-LAST:event_user_btnActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        jLabel3.setIcon(new Images().Showimage());
+        jLabel3.setIcon(new Images().ShowImg());
     }//GEN-LAST:event_jButton1ActionPerformed
     
     /**
