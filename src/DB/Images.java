@@ -44,10 +44,10 @@ public class Images {
     }
     
     public void Showimage() throws IOException{
-    String newFileName = "Image6";
+    String newFileName = "File";
     GridFS gfsPhoto = new GridFS(database, "photo");
     GridFSDBFile imageForOutput = gfsPhoto.findOne(newFileName);
-    imageForOutput.writeTo("E:\\LoxaxaxaL.png");
+    imageForOutput.writeTo("\\Images");
     System.out.println(imageForOutput);
     
     }
