@@ -1,11 +1,6 @@
-import DB.Images;
 import AppObj.Sale;
 import AppObj.User;
 import GeoLoc.Geocode;
-import com.lynden.gmapsfx.javascript.object.LatLong;
-import java.lang.reflect.InvocationTargetException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class AddSale extends javax.swing.JFrame {
@@ -159,7 +154,7 @@ public class AddSale extends javax.swing.JFrame {
     }//GEN-LAST:event_cancel_btnActionPerformed
 
     private void add_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_btnActionPerformed
-        new Geocode().getLatLong(address_tf.getText(), prd_name_tf.getText());
+        new Geocode().InsertLatLongDB(address_tf.getText(), prd_name_tf.getText());
         addSale();
         JOptionPane.showMessageDialog(null, "Η αγγελία σας προστέθηκε με επιτυχία.", "", JOptionPane.INFORMATION_MESSAGE);
         this.dispose();

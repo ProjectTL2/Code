@@ -14,7 +14,7 @@ public class Geocode {
     GeocodingService geocodingService;
     String address;
     
-    public void getLatLong(String address, String sale_name) {
+    public void InsertLatLongDB(String address, String sale_name) {
         Platform.runLater(()->{
             geocodingService = new GeocodingService();
             geocodingService.geocode(address, (GeocodingResult[] results, GeocoderStatus status) -> {
