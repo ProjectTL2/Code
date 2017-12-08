@@ -12,6 +12,9 @@ import com.mongodb.MongoException;
 import com.mongodb.gridfs.GridFS;
 import com.mongodb.gridfs.GridFSDBFile;
 import com.mongodb.gridfs.GridFSInputFile;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
 
 /**
  *
@@ -43,14 +46,20 @@ public class Images {
 
     }
     
-    public void Showimage() throws IOException{
+    public void Saveimage() throws IOException{
     String newFileName = "File";
     GridFS gfsPhoto = new GridFS(database, "photo");
     GridFSDBFile imageForOutput = gfsPhoto.findOne(newFileName);
-    imageForOutput.writeTo("\\Images");
+    imageForOutput.writeTo("C:\\File.png");
     System.out.println(imageForOutput);
     
     }
-   
+   public ImageIcon Showimage(){
+      ImageIcon imageIcon = new ImageIcon("C:\\lol.png");
+          Image image = imageIcon.getImage();
+          Image newimg = image.getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+          imageIcon = new ImageIcon(newimg); 
+          return imageIcon;    
+   }
     
 }
