@@ -5,6 +5,7 @@ public class Options extends javax.swing.JFrame {
         
     public Options(User curUser) {
         initComponents();
+        this.setLocationRelativeTo(null);
         this.curUser = curUser;
     }
     

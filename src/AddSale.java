@@ -9,6 +9,7 @@ public class AddSale extends javax.swing.JFrame {
     
     public AddSale(User curUser) {
         initComponents();
+        this.setLocationRelativeTo(null);
         this.curUser = curUser;
     }
     

@@ -6,6 +6,7 @@ public class SignIn extends javax.swing.JFrame {
 
     public SignIn() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
     
     public boolean findIfUserExists() {

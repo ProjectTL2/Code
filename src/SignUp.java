@@ -6,6 +6,7 @@ public class SignUp extends javax.swing.JFrame {
     
     public SignUp() {
         initComponents();
+        this.setLocationRelativeTo(null);
         name_ep_lbl.setVisible(false);
         name_ep_tf.setVisible(false);
         afm_ep_lbl.setVisible(false);
