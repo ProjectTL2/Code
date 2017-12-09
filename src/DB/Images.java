@@ -28,8 +28,6 @@ public class Images {
         catch (MongoException | IOException e) {}
     }
     
-    
-    
    /*
     public void SaveImg(String s) throws IOException {
         
@@ -48,7 +46,7 @@ public class Images {
     
    public ImageIcon ShowImg() {
         
-        ImageIcon imageIcon = new ImageIcon("E:\\temp.jpg");
+        ImageIcon imageIcon = new ImageIcon("");
         Image image = imageIcon.getImage();
         Image newimg = image.getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH);
         imageIcon = new ImageIcon(newimg); 
