@@ -23,7 +23,6 @@ import java.util.logging.Logger;
 public class Images {
     
     public void UploadImg(String filePath,String fileName) {
-        
          MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb://localhost:27017"));
          ObjectId fileId = null;
         
@@ -64,8 +63,7 @@ public class Images {
     }
     
      public ImageIcon ShowImg() {
-        
-        ImageIcon imageIcon = new ImageIcon("E:\\lol.jpg");
+        ImageIcon imageIcon = new ImageIcon("‪‪");
         Image image = imageIcon.getImage();
         Image newimg = image.getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH);
         imageIcon = new ImageIcon(newimg); 

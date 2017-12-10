@@ -2,7 +2,6 @@ package DB;
 
 import java.io.File;public class Files {
     
-    
     public File newfile(){
         int randomNum,minimum=5,maximum=10;
         

@@ -20,7 +20,7 @@ public class Map {
     
     public JFXPanel mapDisp() {
         jfxPanel = new JFXPanel();
-        jfxPanel.setSize(380, 200);
+        jfxPanel.setSize(1280, 940);
         jfxPanel.setLocation(10, 80);
         
         Platform.runLater(() -> {
@@ -30,7 +30,7 @@ public class Map {
 
                 MapOptions options = new MapOptions()
                     .center(center)
-                    .zoom(12)
+                    .zoom(15)
                     .overviewMapControl(false)
                     .panControl(false)
                     .rotateControl(false)
