@@ -20,7 +20,6 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 public class Images {
     
     public void UploadImg(String filePath,String fileName) {
@@ -35,45 +34,34 @@ public class Images {
            GridFSUploadOptions uploadOptions = new GridFSUploadOptions().chunkSizeBytes(1024).metadata(new Document("type", "image").append("content_type", "image/jpg"));
            fileId = gridBucket.uploadFromStream(fileName, inputStream,uploadOptions);
            
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-       catch (Exception e) {
-        e.printStackTrace();
-  }
     }
     
-      
-         public void SaveImg(String fileName) {
-             
-             
-             
-            
-             MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb://localhost:27017"));
-              try {
-   MongoDatabase database = mongoClient.getDatabase("photo");
-   GridFSBucket gridBucket = GridFSBuckets.create(database);
+    public void SaveImg(String fileName) {
+        MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb://localhost:27017"));
+        try {
+            MongoDatabase database = mongoClient.getDatabase("photo");
+            GridFSBucket gridBucket = GridFSBuckets.create(database);
    
-   gridBucket.find().forEach(new Block<GridFSFile>()
-      {
-   @Override
-   public void apply( GridFSFile gridFSFile ) {
-       try {
-           
-           FileOutputStream fileOutputStream = new FileOutputStream(new Files().newfile());
-           gridBucket.downloadToStream(fileName, fileOutputStream);
-           fileOutputStream.close();
-       } catch (IOException ex) {
-           Logger.getLogger(Images.class.getName()).log(Level.SEVERE, null, ex);
-       }
+            gridBucket.find().forEach(new Block<GridFSFile>() {
+                @Override
+                public void apply( GridFSFile gridFSFile ) {
+                    try {
 
-   }
-   });
- 
-  } catch (Exception e) {
-   e.printStackTrace();
-  } 
+                        FileOutputStream fileOutputStream = new FileOutputStream(new Files().newfile());
+                        gridBucket.downloadToStream(fileName, fileOutputStream);
+                        fileOutputStream.close();
+                    } catch (IOException ex) {
+                        Logger.getLogger(Images.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            });
+        } catch (Exception e) {
+         e.printStackTrace();
+        } 
     }
-    
-    
     
      public ImageIcon ShowImg() {
         
