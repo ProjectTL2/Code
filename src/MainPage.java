@@ -34,8 +34,6 @@ public class MainPage extends JFrame {
         this.pack();
     }
     
-   
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -58,7 +56,6 @@ public class MainPage extends JFrame {
         setForeground(new java.awt.Color(240, 240, 240));
         setMaximumSize(new java.awt.Dimension(2560, 1440));
         setMinimumSize(new java.awt.Dimension(1280, 720));
-        setPreferredSize(new java.awt.Dimension(1920, 1080));
         setSize(new java.awt.Dimension(1920, 1080));
 
         user_btn.setText("Επισκέπτης");
@@ -93,6 +90,12 @@ public class MainPage extends JFrame {
         search_tf.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 search_tfMouseClicked(evt);
+            }
+        });
+
+        search_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                search_btnActionPerformed(evt);
             }
         });
 
@@ -182,6 +185,16 @@ public class MainPage extends JFrame {
             
         }
     }//GEN-LAST:event_user_btnActionPerformed
+
+    private void search_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_btnActionPerformed
+        this.hide();
+        if (signin_btn.getText().equals("Σύνδεση")) {
+            new SearchResults(search_tf.getText()).setVisible(true);  
+        }
+        else {
+            new SearchResults(search_tf.getText(), curUser).setVisible(true);
+        }
+    }//GEN-LAST:event_search_btnActionPerformed
     
     /**
      * @param args the command line arguments

@@ -4,37 +4,42 @@ import DB.EditDoc;
 
 public class Sale {
     User curUser;
-    String name, title, desc, address;
+    String title, desc, address;
     double price;
+    int sale_id;
     
-    public Sale(User curUser, String name, String title, String desc,
+    public Sale(User curUser, String title, String desc,
             double price, String address) {
         this.curUser = curUser;
-        this.name = name;
+        this.sale_id = CreateSaleId();
         this.title = title;
         this.desc = desc;
         this.price = price;
         this.address = address;
         
         EditDoc newEditDoc = new EditDoc();
-        newEditDoc.InsertSaleInDB(curUser.getUsername(), name, title, desc,
+        newEditDoc.InsertSaleInDB(curUser.getUsername(),  sale_id, title, desc,
                 price, address);
     }
+    
+    private int CreateSaleId() {
+        return (int)(Math.random() * 1000);
+    }
 
+    public int getSale_id() {
+        return sale_id;
+    }
+
+    public void setSale_id(int sale_id) {
+        this.sale_id = sale_id;
+    }
+    
     public User getCurUser() {
         return curUser;
     }
 
     public void setCurUser(User curUser) {
         this.curUser = curUser;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getTitle() {

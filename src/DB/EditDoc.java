@@ -22,10 +22,10 @@ public class EditDoc {
     }
     
     //Method to insert sales in DB.
-    public void InsertSaleInDB(String username, String name, String title,
+    public void InsertSaleInDB(String username, int sale_id, String title,
             String desc, double price, String address) {
         Document document = new Document("User", username)
-        .append("Name", name)
+        .append("Id", sale_id)
         .append("Title", title)
         .append("Desc", desc)
         .append("Price", price)

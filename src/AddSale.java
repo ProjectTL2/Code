@@ -14,7 +14,7 @@ public class AddSale extends javax.swing.JFrame {
     }
     
     public void addSale() {
-        Sale newsale = new Sale(curUser, prd_name_tf.getText(), prd_title_tf.getText(),
+        Sale newsale = new Sale(curUser, prd_title_tf.getText(),
                 prd_desc_tf.getText(), Double.parseDouble(prd_price_tf.getText()),
                 address_tf.getText());
     }
@@ -23,8 +23,6 @@ public class AddSale extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        prd_name_tf = new javax.swing.JTextField();
-        prd_name_lbl = new javax.swing.JLabel();
         add_btn = new javax.swing.JButton();
         cancel_btn = new javax.swing.JButton();
         prd_title_tf = new javax.swing.JTextField();
@@ -39,9 +37,6 @@ public class AddSale extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        prd_name_lbl.setLabelFor(prd_name_tf);
-        prd_name_lbl.setText("Όνομα Προϊόντος:");
 
         add_btn.setText("Πρόσθεσε Αγγελία");
         add_btn.addActionListener(new java.awt.event.ActionListener() {
@@ -85,18 +80,16 @@ public class AddSale extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(prd_name_tf)
                     .addComponent(prd_title_tf)
                     .addComponent(prd_desc_tf)
                     .addComponent(prd_price_tf)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(prd_name_lbl)
                             .addComponent(prd_title_lbl)
                             .addComponent(prd_desc_lbl)
                             .addComponent(prd_price_lbl)
                             .addComponent(address_lbl))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 324, Short.MAX_VALUE))
                     .addComponent(address_tf)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,11 +108,7 @@ public class AddSale extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(prd_name_lbl)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(prd_name_tf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap()
                 .addComponent(prd_title_lbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(prd_title_tf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -139,7 +128,7 @@ public class AddSale extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 170, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 236, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(add_btn)
                     .addComponent(cancel_btn))
@@ -155,7 +144,7 @@ public class AddSale extends javax.swing.JFrame {
     }//GEN-LAST:event_cancel_btnActionPerformed
 
     private void add_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_btnActionPerformed
-        new Geocode().InsertLatLongDB(address_tf.getText(), prd_name_tf.getText());
+        new Geocode().InsertLatLongDB(address_tf.getText());
         addSale();
         JOptionPane.showMessageDialog(null, "Η αγγελία σας προστέθηκε με επιτυχία.", "", JOptionPane.INFORMATION_MESSAGE);
         this.dispose();
@@ -175,8 +164,6 @@ public class AddSale extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel prd_desc_lbl;
     private javax.swing.JTextField prd_desc_tf;
-    private javax.swing.JLabel prd_name_lbl;
-    private javax.swing.JTextField prd_name_tf;
     private javax.swing.JLabel prd_price_lbl;
     private javax.swing.JTextField prd_price_tf;
     private javax.swing.JLabel prd_title_lbl;

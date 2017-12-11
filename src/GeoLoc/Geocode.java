@@ -14,7 +14,7 @@ public class Geocode {
     GeocodingService geocodingService;
     String address;
     
-    public void InsertLatLongDB(String address, String sale_name) {
+    public void InsertLatLongDB(String address) {
         Platform.runLater(()->{
             geocodingService = new GeocodingService();
             geocodingService.geocode(address, (GeocodingResult[] results, GeocoderStatus status) -> {
@@ -24,7 +24,6 @@ public class Geocode {
                             results[0].getGeometry().getLocation().getLongitude());
                     Document document = new Document("Lat", latlong.getLatitude())
                             .append("Longt", latlong.getLongitude())
-                            .append("Sale_Name", sale_name)
                             .append("Address", address);
                     DBCon x = new DBCon();
                     x.mongocollection_sale_loc.insertOne(document);
