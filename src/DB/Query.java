@@ -2,8 +2,12 @@ package DB;
 
 import AppObj.Sale;
 import AppObj.User;
+import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCursor;
+import com.mongodb.DBObject;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Query {    
     
@@ -41,23 +45,35 @@ public class Query {
         return userf;
     }
     
-    public Sale[] SearchQuery(String s) {
-        int i = -1;
-        Sale[] sale = null;
+    public List<Sale> SearchQuery(String s) {
         DBCon x = new DBCon();
-        BasicDBObject queringUser = new BasicDBObject("Title", s);
-        DBCursor cursor = x.dbcollection_user.find(queringUser);
+        
+        List<Sale> sales = new ArrayList<Sale>();
+        
+        BasicDBObject queringSale = new BasicDBObject("Title", s);
+        DBCursor cursor = x.dbcollection_sales.find(queringSale);
         
         while (cursor.hasNext()) {
-            i = i++;
-            sale[i].setSale_id((int) cursor.next().get("Id"));
-            sale[i].setTitle((String) cursor.next().get("Title"));
-            sale[i].setDesc((String) cursor.next().get("Desc"));
-            sale[i].setPrice((double) cursor.next().get("Price"));
-            sale[i].setAddress((String) cursor.next().get("Address"));
-            cursor.next();
+            DBObject cur = cursor.next();
+            
+            BasicDBList salesList = (BasicDBList) cur.get("sales");
+            for (int i = 0; i <= salesList.size(); i++) {
+                BasicDBObject salesObj = (BasicDBObject) salesList.get(i);
+                int Sale_id = salesObj.getInt("Id");
+                String Title = salesObj.getString("Title");
+                String Desc = salesObj.getString("Desc");
+                String Address = salesObj.getString("Address");
+                
+                Sale sale = new Sale();
+                sale.setSale_id(Sale_id);
+                sale.setTitle(Title);
+                sale.setDesc(Desc);
+                sale.setAddress(Address);
+                
+                sales.add(sale);
+            }
         }
         
-        return sale;
+        return sales;
     }
 }

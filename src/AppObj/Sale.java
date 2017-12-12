@@ -7,6 +7,8 @@ public class Sale {
     String title, desc, address;
     double price;
     int sale_id;
+
+    public Sale() {}
     
     public Sale(User curUser, String title, String desc,
             double price, String address) {

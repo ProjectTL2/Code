@@ -24,6 +24,7 @@ public class DBCon {
     //Query.java
     DB database2 = client.getDB("project_tl");
     public DBCollection dbcollection_user = database2.getCollection("users");
+    public DBCollection dbcollection_sales = database2.getCollection("sales");
     
     //Images.java
     public DB db_img = client.getDB("project_tl");
