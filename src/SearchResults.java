@@ -8,28 +8,31 @@ public class SearchResults extends javax.swing.JFrame {
     
     User curUser = new User();
     List<Sale> sales = new ArrayList<>();
+    String query;
     boolean signedin = false;
     
-    public SearchResults(String s) {
+    public SearchResults(String query) {
         initComponents();
         this.setLocationRelativeTo(null);
         
-        sales = new Query().SearchQuery(s);
+        this.query = query;
+        sales = new Query().SearchQuery(query);
         setValues();
     }
     
-    public SearchResults(String s, User curUser) {
+    public SearchResults(String query, User curUser) {
         initComponents();
         this.setLocationRelativeTo(null);
         
         this.curUser = curUser;
         signedin = true;
-        sales = new Query().SearchQuery(s);
+        this.query = query;
+        sales = new Query().SearchQuery(query);
         setValues();
     }
     
     private void setValues() {
-        jLabel1.setText(sales.get(0).getTitle());
+        if (new Query().checkIfQueryExists(query)) System.out.println(sales.get(0).getTitle());
     }
     
     @SuppressWarnings("unchecked")

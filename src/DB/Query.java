@@ -22,9 +22,9 @@ public class Query {
     }
     
     public boolean checkIfUsrnmExists(String username) {
-        DBCon newCon = new DBCon();
+        DBCon x = new DBCon();
         
-        DBCursor cursor = newCon.dbcollection_user.find(new BasicDBObject("Username", username));
+        DBCursor cursor = x.dbcollection_user.find(new BasicDBObject("Username", username));
         
         return cursor.hasNext();
     }
@@ -45,11 +45,18 @@ public class Query {
         return userf;
     }
     
-    public List<Sale> SearchQuery(String s) {
+    public boolean checkIfQueryExists(String query) {
+        DBCon x = new DBCon();
+        DBCursor cursor = x.dbcollection_sales.find(new BasicDBObject("Title", query));
+        
+        return cursor.hasNext();
+    }
+    
+    public List<Sale> SearchQuery(String query) {
         DBCon x = new DBCon();
         List<Sale> sales = new ArrayList<>();
         List<Document> salesList = (List<Document>) x.mongocollection_sale
-            .find(new BasicDBObject("Title", s))
+            .find(new BasicDBObject("Title", query))
             .into(new ArrayList<>());
         
         for (Document saleD : salesList) {
