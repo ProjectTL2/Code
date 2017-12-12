@@ -7,7 +7,7 @@ import java.util.List;
 public class SearchResults extends javax.swing.JFrame {
     
     User curUser = new User();
-    List<Sale> sales = new ArrayList<Sale>();
+    List<Sale> sales = new ArrayList<>();
     boolean signedin = false;
     
     public SearchResults(String s) {
@@ -29,7 +29,7 @@ public class SearchResults extends javax.swing.JFrame {
     }
     
     private void setValues() {
-        jLabel1.setText(sales.get(0).getDesc());
+        jLabel1.setText(sales.get(0).getTitle());
     }
     
     @SuppressWarnings("unchecked")

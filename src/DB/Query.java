@@ -8,6 +8,7 @@ import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import java.util.ArrayList;
 import java.util.List;
+import org.bson.Document;
 
 public class Query {    
     
@@ -22,9 +23,8 @@ public class Query {
     
     public boolean checkIfUsrnmExists(String username) {
         DBCon newCon = new DBCon();
-        BasicDBObject queringUser = new BasicDBObject("Username", username);
         
-        DBCursor cursor = newCon.dbcollection_user.find(queringUser);
+        DBCursor cursor = newCon.dbcollection_user.find(new BasicDBObject("Username", username));
         
         return cursor.hasNext();
     }
@@ -47,31 +47,20 @@ public class Query {
     
     public List<Sale> SearchQuery(String s) {
         DBCon x = new DBCon();
+        List<Sale> sales = new ArrayList<>();
+        List<Document> salesList = (List<Document>) x.mongocollection_sale
+            .find(new BasicDBObject("Title", s))
+            .into(new ArrayList<>());
         
-        List<Sale> sales = new ArrayList<Sale>();
-        
-        BasicDBObject queringSale = new BasicDBObject("Title", s);
-        DBCursor cursor = x.dbcollection_sales.find(queringSale);
-        
-        while (cursor.hasNext()) {
-            DBObject cur = cursor.next();
-            
-            BasicDBList salesList = (BasicDBList) cur.get("sales");
-            for (int i = 0; i <= salesList.size(); i++) {
-                BasicDBObject salesObj = (BasicDBObject) salesList.get(i);
-                int Sale_id = salesObj.getInt("Id");
-                String Title = salesObj.getString("Title");
-                String Desc = salesObj.getString("Desc");
-                String Address = salesObj.getString("Address");
-                
-                Sale sale = new Sale();
-                sale.setSale_id(Sale_id);
-                sale.setTitle(Title);
-                sale.setDesc(Desc);
-                sale.setAddress(Address);
-                
-                sales.add(sale);
-            }
+        for (Document saleD : salesList) {
+            Sale saleS = new Sale();
+            saleS.setSale_id(saleD.getInteger("Id"));
+            saleS.setTitle(saleD.getString("Title"));
+            saleS.setDesc(saleD.getString("Desc"));
+            saleS.setPrice(saleD.getDouble("Price"));
+            saleS.setAddress(saleD.getString("Address"));
+
+            sales.add(saleS);
         }
         
         return sales;
