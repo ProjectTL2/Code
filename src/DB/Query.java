@@ -23,7 +23,6 @@ public class Query {
     
     public boolean checkIfUsrnmExists(String username) {
         DBCon x = new DBCon();
-        
         DBCursor cursor = x.dbcollection_user.find(new BasicDBObject("Username", username));
         
         return cursor.hasNext();
