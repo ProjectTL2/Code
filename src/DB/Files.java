@@ -10,7 +10,7 @@ import java.io.File;public class Files {
         y = Integer.toString(randomNum);
         x=y+".jpg";
         
-        File newimage = new File("E:\\lol"+x);
+        File newimage = new File("\\Images"+x);
         newimage.setWritable(true);
         newimage.toPath();
         
