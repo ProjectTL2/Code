@@ -7,7 +7,7 @@ public class SaleItem extends javax.swing.JFrame {
      */
     public SaleItem() {
         initComponents();
-        jLabel1.setIcon(new Images().ShowImg());
+        
     }
     
     @SuppressWarnings("unchecked")

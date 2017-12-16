@@ -1,4 +1,6 @@
 import DB.Images;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
 public class FileChooser extends javax.swing.JFrame {
     public FileChooser() {
@@ -33,16 +35,20 @@ public class FileChooser extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    void OpenActionPerformed(java.awt.event.ActionEvent evt) {
+    String OpenActionPerformed(java.awt.event.ActionEvent evt) {
         int returnVal = jFileChooser1.showOpenDialog(this);
         if (returnVal == jFileChooser1.APPROVE_OPTION) {
             this.dispose();
-            new Images().UploadImg(jFileChooser1.getSelectedFile().getAbsolutePath(),jFileChooser1.getSelectedFile().getName());   
+            new Images().UploadImg(jFileChooser1.getSelectedFile().getAbsolutePath(),jFileChooser1.getSelectedFile().getName());  
+            return jFileChooser1.getSelectedFile().getAbsolutePath();
         }
         else {
             System.out.println("File access cancelled by user.");
         }
+        return null;
     }
+    
+   
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFileChooser jFileChooser1;
