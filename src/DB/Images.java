@@ -35,8 +35,8 @@ public class Images {
         imageForOutput.writeTo(newfile(filename));
     }
     
-    public ImageIcon ShowImg() {
-        ImageIcon imageIcon = new ImageIcon("‪‪");
+    public ImageIcon ShowImg(String s) {
+        ImageIcon imageIcon = new ImageIcon(s);
         Image image = imageIcon.getImage();
         Image newimg = image.getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH);
         imageIcon = new ImageIcon(newimg); 

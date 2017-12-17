@@ -35,6 +35,7 @@ public class AddSale extends javax.swing.JFrame {
         address_tf = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        Label2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -102,7 +103,9 @@ public class AddSale extends javax.swing.JFrame {
                                 .addComponent(jButton1)
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(add_btn)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Label2)
+                            .addComponent(add_btn))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -128,7 +131,9 @@ public class AddSale extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 236, Short.MAX_VALUE)
+                .addGap(56, 56, 56)
+                .addComponent(Label2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 180, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(add_btn)
                     .addComponent(cancel_btn))
@@ -152,10 +157,11 @@ public class AddSale extends javax.swing.JFrame {
     }//GEN-LAST:event_add_btnActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new FileChooser().OpenActionPerformed(evt);
+       Label2.setIcon(new FileChooser().OpenActionPerformed(evt)); 
     }//GEN-LAST:event_jButton1ActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Label2;
     private javax.swing.JButton add_btn;
     private javax.swing.JLabel address_lbl;
     private javax.swing.JTextField address_tf;

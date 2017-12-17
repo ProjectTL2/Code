@@ -35,12 +35,13 @@ public class FileChooser extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    String OpenActionPerformed(java.awt.event.ActionEvent evt) {
+    ImageIcon OpenActionPerformed(java.awt.event.ActionEvent evt) {
         int returnVal = jFileChooser1.showOpenDialog(this);
         if (returnVal == jFileChooser1.APPROVE_OPTION) {
             this.dispose();
             new Images().UploadImg(jFileChooser1.getSelectedFile().getAbsolutePath(),jFileChooser1.getSelectedFile().getName());  
-            return jFileChooser1.getSelectedFile().getAbsolutePath();
+            ImageIcon icon = new Images().ShowImg(jFileChooser1.getSelectedFile().getAbsolutePath());
+            return icon;
         }
         else {
             System.out.println("File access cancelled by user.");
