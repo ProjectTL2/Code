@@ -5,7 +5,9 @@ import DB.EditDoc;
 public class User {
     String name, surname, username, password, email, bday, ph_num, afm_ep, name_ep;
     
-    public User() {}
+    public User() {
+        this.username = "Guest";
+    }
         
     //create obj User and insert in DB, for simple users.
     public User(String username, String password, String name,

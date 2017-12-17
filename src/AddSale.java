@@ -37,8 +37,6 @@ public class AddSale extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         Label2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         add_btn.setText("Πρόσθεσε Αγγελία");
         add_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,7 +142,6 @@ public class AddSale extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cancel_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel_btnActionPerformed
-        this.dispose();
         new MainPage(curUser).setVisible(true);
     }//GEN-LAST:event_cancel_btnActionPerformed
 
@@ -152,7 +149,6 @@ public class AddSale extends javax.swing.JFrame {
         new Geocode().InsertLatLongDB(address_tf.getText());
         addSale();
         JOptionPane.showMessageDialog(null, "Η αγγελία σας προστέθηκε με επιτυχία.", "", JOptionPane.INFORMATION_MESSAGE);
-        this.dispose();
         new MainPage(curUser).setVisible(true);
     }//GEN-LAST:event_add_btnActionPerformed
 

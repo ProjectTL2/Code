@@ -1,21 +1,24 @@
 import AppObj.User;
+import DB.Query;
 import GeoLoc.Map;
 import javax.swing.JFrame;
 import javafx.embed.swing.JFXPanel;
+import javax.swing.JOptionPane;
 
 public class MainPage extends JFrame {
     
     User curUser = new User();
-    JFXPanel jfxPanel;
+    JFXPanel mapPanel;
     
     public MainPage()  {
         initComponents();
         this.setLocationRelativeTo(null);
+        user_btn.setText(this.curUser.getUsername());
         add_btn.setVisible(false);
         
         //Display Maps.
-        jfxPanel = new Map().mapDisp();
-        this.getContentPane().add(jfxPanel); 
+        mapPanel = new Map().mapDisp();
+        this.getContentPane().add(mapPanel); 
         this.pack();
     }
     
@@ -29,8 +32,8 @@ public class MainPage extends JFrame {
         add_btn.setVisible(true);
         
         //Display Maps.
-        jfxPanel = new Map().mapDisp();
-        this.getContentPane().add(jfxPanel);
+        mapPanel = new Map().mapDisp();
+        this.getContentPane().add(mapPanel);
         this.pack();
     }
     
@@ -45,7 +48,6 @@ public class MainPage extends JFrame {
         add_btn = new javax.swing.JButton();
         search_tf = new javax.swing.JTextField();
         search_btn = new javax.swing.JButton();
-        filters_btn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         jLabel2.setText("jLabel2");
@@ -56,9 +58,9 @@ public class MainPage extends JFrame {
         setForeground(new java.awt.Color(240, 240, 240));
         setMaximumSize(new java.awt.Dimension(2560, 1440));
         setMinimumSize(new java.awt.Dimension(1280, 720));
-        setSize(new java.awt.Dimension(1920, 1080));
+        setPreferredSize(new java.awt.Dimension(1280, 720));
+        setSize(new java.awt.Dimension(1280, 720));
 
-        user_btn.setText("Επισκέπτης");
         user_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 user_btnActionPerformed(evt);
@@ -99,8 +101,6 @@ public class MainPage extends JFrame {
             }
         });
 
-        filters_btn.setText("Φίλτρα");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -111,7 +111,7 @@ public class MainPage extends JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(user_btn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(search_tf, javax.swing.GroupLayout.DEFAULT_SIZE, 1655, Short.MAX_VALUE))
+                        .addComponent(search_tf, javax.swing.GroupLayout.DEFAULT_SIZE, 1707, Short.MAX_VALUE))
                     .addComponent(add_btn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -120,33 +120,27 @@ public class MainPage extends JFrame {
                         .addGap(6, 6, 6)
                         .addComponent(signin_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(filters_btn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(71, 71, 71)
                         .addComponent(signup_btn)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(11, 11, 11)
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(user_btn)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addComponent(search_tf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(6, 6, 6)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(search_tf)
+                            .addComponent(user_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(add_btn))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(signin_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(search_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(6, 6, 6)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(signup_btn)
-                            .addComponent(filters_btn))))
+                        .addComponent(signup_btn)))
                 .addGap(1016, 1016, 1016))
         );
 
@@ -156,7 +150,7 @@ public class MainPage extends JFrame {
     private void signin_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signin_btnActionPerformed
         if (signin_btn.getText().equals("Σύνδεση")) {
             this.hide();
-            new SignIn().setVisible(true);  
+            new SignIn().setVisible(true);
         }
         else {
             this.hide();
@@ -170,8 +164,7 @@ public class MainPage extends JFrame {
     }//GEN-LAST:event_signup_btnActionPerformed
 
     private void add_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_btnActionPerformed
-        if (!user_btn.getText().equals("Επισκέπτης")) {
-            this.hide();
+        if (!curUser.getUsername().equals("Guest")) {
             new AddSale(curUser).setVisible(true);
         }
     }//GEN-LAST:event_add_btnActionPerformed
@@ -182,18 +175,21 @@ public class MainPage extends JFrame {
 
     private void user_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_user_btnActionPerformed
         if (!user_btn.getText().equals("Guest")) {
-            
+            new UserProfile(curUser).setVisible(true);
         }
     }//GEN-LAST:event_user_btnActionPerformed
 
     private void search_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_btnActionPerformed
-        this.hide();
-        if (signin_btn.getText().equals("Σύνδεση")) {
-            new SearchResults(search_tf.getText()).setVisible(true);  
+        if (new Query().checkIfQueryExists(search_tf.getText())) {
+            this.hide();
+            if (signin_btn.getText().equals("Σύνδεση")) {
+                new SearchResults(search_tf.getText()).setVisible(true);  
+            }
+            else {
+                new SearchResults(search_tf.getText(), curUser).setVisible(true);
+            }
         }
-        else {
-            new SearchResults(search_tf.getText(), curUser).setVisible(true);
-        }
+        else JOptionPane.showMessageDialog(null, "No matching sale was found.", "Not Found!", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_search_btnActionPerformed
     
     /**
@@ -234,7 +230,6 @@ public class MainPage extends JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add_btn;
-    private javax.swing.JButton filters_btn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JButton search_btn;
