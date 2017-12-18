@@ -50,16 +50,11 @@ public class Map {
                                                                        
                 int i=0;
                 String[] Marker = {"41.0835903,23.5473673", "41.0838903,23.5473973","41.0835993,23.5476673"};
-                 InfoWindowOptions infoWindowOptions = new InfoWindowOptions();
-                 InfoWindow gamo = new InfoWindow(infoWindowOptions);
-                 infoWindowOptions.content("<h2>Lantzos poustis</h2>"
-                                + "Current Location: toy gamiete<br>");
-               
+                
                 for(i=0;i<=2;i++){
-                 map.addMarker( new Markers().setMarker(Marker[i].toString()));
-                 gamo.open(map ,new Markers().setMarker(Marker[i]));
+                    map.addMarker( new Markers().setMarker(Marker[i].toString()));
                 }
-                           });
+            });
             scene = new Scene(mapView);
             jfxPanel.setScene(scene);
         });
