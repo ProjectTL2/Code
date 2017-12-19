@@ -27,7 +27,7 @@ public class Geocode {
                             .append("Sale_Id", id)
                             .append("Address", address);
                     DBCon x = new DBCon();
-                    x.mongocollection_sale_loc.insertOne(document);
+                    x.mongocollection_sales_loc.insertOne(document);
                 }
             });
         });

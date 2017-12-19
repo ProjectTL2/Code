@@ -25,9 +25,6 @@ public class Map {
     DBCon z = new DBCon();
     List<Sale_loc> location = new ArrayList<>();
    
-    
-    
-    
     //Other.
     GoogleMap map;
     GoogleMapView mapView;
@@ -55,17 +52,12 @@ public class Map {
                     .streetViewControl(false)
                     .zoomControl(false)
                     .mapType(MapTypeIdEnum.ROADMAP);
-                map = mapView.createMap(options);
-           int i=0;
-                for(i=0;i<markerx.length;i++)
-                {
-                  map.addMarker(markerx[i]);
                 
+                for(int i=0; i<markerx.length; i++) {
+                    map.addMarker(markerx[i]);
                 }
-
                 
-                
-                
+                map = mapView.createMap(options);
             });
             scene = new Scene(mapView);
             jfxPanel.setScene(scene);

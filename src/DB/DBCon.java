@@ -19,7 +19,7 @@ public class DBCon {
     MongoDatabase database = client.getDatabase("project_tl");
     public MongoCollection<Document> mongocollection_user = database.getCollection("users");
     public MongoCollection<Document> mongocollection_sale = database.getCollection("sales");
-    public MongoCollection<Document> mongocollection_sale_loc = database.getCollection("sales_loc");
+    public MongoCollection<Document> mongocollection_sales_loc = database.getCollection("sales_loc");
     
     //Query.java
     DB database2 = client.getDB("project_tl");
