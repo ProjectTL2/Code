@@ -52,8 +52,8 @@ public class SearchResults extends javax.swing.JFrame {
             results_p.add(descs[i]);
             
             JButton b = new JButton();
-            b.setText("...");
-            b.setBounds(50, j, 20, 20);
+            b.setText("+");
+            b.setBounds(50, j, 40, 20);
             b.addActionListener((ActionEvent evt) -> {
                 new SaleItem(x).setVisible(true);
             });
