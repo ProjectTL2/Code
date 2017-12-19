@@ -1,6 +1,8 @@
 package GeoLoc;
 
+import AppObj.Sale_loc;
 import DB.DBCon;
+import DB.Query;
 import com.lynden.gmapsfx.GoogleMapView;
 import com.lynden.gmapsfx.javascript.object.GoogleMap;
 import com.lynden.gmapsfx.javascript.object.InfoWindow;
@@ -11,6 +13,8 @@ import com.lynden.gmapsfx.javascript.object.MapTypeIdEnum;
 import com.lynden.gmapsfx.javascript.object.Marker;
 import com.lynden.gmapsfx.javascript.object.MarkerOptions;
 import com.mongodb.DBCursor;
+import java.util.ArrayList;
+import java.util.List;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.Scene;
@@ -19,6 +23,10 @@ public class Map {
     //To return.
     JFXPanel jfxPanel;
     DBCon z = new DBCon();
+    List<Sale_loc> location = new ArrayList<>();
+   
+    
+    
     
     //Other.
     GoogleMap map;
@@ -29,6 +37,7 @@ public class Map {
         jfxPanel = new JFXPanel();
         jfxPanel.setSize(680, 580);
         jfxPanel.setLocation(10, 80);
+        Marker[] markerx = new Markers().setMarker();
         
         Platform.runLater(() -> {
             mapView = new GoogleMapView();
@@ -47,13 +56,16 @@ public class Map {
                     .zoomControl(false)
                     .mapType(MapTypeIdEnum.ROADMAP);
                 map = mapView.createMap(options);
-                                                                       
-                int i=0;
-                String[] Marker = {"41.0835903,23.5473673", "41.0838903,23.5473973","41.0835993,23.5476673"};
+           int i=0;
+                for(i=0;i<markerx.length;i++)
+                {
+                  map.addMarker(markerx[i]);
                 
-                for(i=0;i<=2;i++){
-                    map.addMarker( new Markers().setMarker(Marker[i].toString()));
                 }
+
+                
+                
+                
             });
             scene = new Scene(mapView);
             jfxPanel.setScene(scene);
