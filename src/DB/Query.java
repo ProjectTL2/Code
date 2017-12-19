@@ -12,10 +12,10 @@ import org.bson.Document;
 public class Query {    
     
     public boolean findIfUserExists(String username, String password) {
-        DBCon newCon = new DBCon();
+        DBCon x = new DBCon();
         BasicDBObject queringUser = new BasicDBObject("Username", username);
         queringUser.put("Password", password);
-        DBCursor cursor = newCon.dbcollection_user.find(queringUser);
+        DBCursor cursor = x.dbcollection_user.find(queringUser);
         
         return cursor.hasNext();
     }
@@ -28,18 +28,27 @@ public class Query {
     }
     
     public User returnUser(String username) {
-        User userf = new User();
-        BasicDBObject queringUser = new BasicDBObject("Username", username);
+        DBCon x = new DBCon();
         
-        userf.setUsername((String) queringUser.get("Username"));
-        userf.setPassword((String) queringUser.get("Password"));
-        userf.setName((String) queringUser.get("Name"));
-        userf.setSurname((String) queringUser.get("Surname"));
-        userf.setEmail((String) queringUser.get("Email"));
-        userf.setAfm_ep((String) queringUser.get("Afm_Ep"));
-        userf.setName_ep((String) queringUser.get("Name_Ep"));
-        userf.setBday((String) queringUser.get("Bday"));
-        userf.setPh_num((String) queringUser.get("Ph_Num"));
+        User userf = new User();
+        List<Document> queringUser = (List<Document>) x.mongocollection_user
+            .find(new BasicDBObject("Username", username))
+            .into(new ArrayList<>());
+        
+        for (Document every : queringUser) {
+            User usert = new User();
+            usert.setUsername(every.getString("Username"));
+            usert.setPassword(every.getString("Password"));
+            usert.setName(every.getString("Name"));
+            usert.setSurname(every.getString("Surname"));
+            usert.setEmail(every.getString("Email"));
+            usert.setAfm_ep(every.getString("Afm_Ep"));
+            usert.setName_ep(every.getString("Name_Ep"));
+            usert.setBday(every.getString("Bday"));
+            usert.setPh_num(every.getString("Ph_Num"));
+            
+            userf = usert;
+        }
         return userf;
     }
     
