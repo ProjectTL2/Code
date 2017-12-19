@@ -22,7 +22,7 @@ public class Markers {
             LatLong Tzini = new LatLong(x.getLat(), x.getLongt());
             MarkerOptions markerOptions = new MarkerOptions();
             markerOptions.position(Tzini);
-            markerOptions.label(x.getAddress());
+            markerOptions.label(x.getTitle());
             Marker TzinisMarker = new Marker(markerOptions);
             markers[i] = TzinisMarker;
             
