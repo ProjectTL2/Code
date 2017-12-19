@@ -175,7 +175,7 @@ public class MainPage extends JFrame {
 
     private void user_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_user_btnActionPerformed
         if (!user_btn.getText().equals("Guest")) {
-            new UserProfile(curUser).setVisible(true);
+            new UserProfile(curUser, true).setVisible(true);
         }
     }//GEN-LAST:event_user_btnActionPerformed
 

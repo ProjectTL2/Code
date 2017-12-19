@@ -1,5 +1,4 @@
 import DB.Images;
-import java.awt.Image;
 import javax.swing.ImageIcon;
 
 public class FileChooser extends javax.swing.JFrame {

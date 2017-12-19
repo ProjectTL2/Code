@@ -2,10 +2,8 @@ package DB;
 
 import AppObj.Sale;
 import AppObj.User;
-import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCursor;
-import com.mongodb.DBObject;
 import java.util.ArrayList;
 import java.util.List;
 import org.bson.Document;
@@ -60,6 +58,7 @@ public class Query {
         
         for (Document saleD : salesList) {
             Sale saleS = new Sale();
+            saleS.setUsername(saleD.getString("User"));
             saleS.setSale_id(saleD.getInteger("Id"));
             saleS.setTitle(saleD.getString("Title"));
             saleS.setDesc(saleD.getString("Desc"));

@@ -14,7 +14,7 @@ public class AddSale extends javax.swing.JFrame {
     }
     
     public void addSale() {
-        Sale newsale = new Sale(curUser, prd_title_tf.getText(),
+        Sale newsale = new Sale(curUser.getUsername(), prd_title_tf.getText(),
                 prd_desc_tf.getText(), Double.parseDouble(prd_price_tf.getText()),
                 address_tf.getText());
     }
@@ -142,13 +142,13 @@ public class AddSale extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cancel_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel_btnActionPerformed
-        new MainPage(curUser).setVisible(true);
+        this.hide();
     }//GEN-LAST:event_cancel_btnActionPerformed
 
     private void add_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_btnActionPerformed
         addSale();
         JOptionPane.showMessageDialog(null, "Η αγγελία σας προστέθηκε με επιτυχία.", "", JOptionPane.INFORMATION_MESSAGE);
-        new MainPage(curUser).setVisible(true);
+        this.hide();
     }//GEN-LAST:event_add_btnActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

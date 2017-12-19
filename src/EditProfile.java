@@ -198,8 +198,8 @@ public class EditProfile extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cancel_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel_btnActionPerformed
-        this.hide();
-        new UserProfile(curUser).setVisible(true);
+        this.dispose();
+        new UserProfile(curUser, true).setVisible(true);
     }//GEN-LAST:event_cancel_btnActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

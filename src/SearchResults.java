@@ -1,8 +1,10 @@
 import AppObj.Sale;
 import AppObj.User;
 import DB.Query;
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 
 public class SearchResults extends javax.swing.JFrame {
@@ -33,22 +35,34 @@ public class SearchResults extends javax.swing.JFrame {
     }
     
     private void setValues() {
-        JLabel[] labels = new JLabel[sales.size()];
+        JLabel[] titles = new JLabel[sales.size()];
+        JLabel[] descs = new JLabel[sales.size()];
+        
         int i = 0, j = 25;
         
-        if (new Query().checkIfQueryExists(query)) {
-            for (Sale x : sales) {
-                System.out.println(x.getTitle()+" "+x.getDesc());
-                labels[i] = new JLabel();
-                labels[i].setBounds(50, j, 80, 20);
-                labels[i].setText(x.getTitle());
-                results_p.add(labels[i]);
-                
-                i++;
-                j = j + 25;
-            }
-            results_p.repaint();
+        for (Sale x : sales) {
+            titles[i] = new JLabel();
+            titles[i].setBounds(100, j, 80, 20);
+            titles[i].setText(x.getTitle());
+            results_p.add(titles[i]);
+            
+            descs[i] = new JLabel();
+            descs[i].setBounds(150, j, 80, 20);
+            descs[i].setText(x.getDesc());
+            results_p.add(descs[i]);
+            
+            JButton b = new JButton();
+            b.setText("...");
+            b.setBounds(50, j, 20, 20);
+            b.addActionListener((ActionEvent evt) -> {
+                new SaleItem(x).setVisible(true);
+            });
+            results_p.add(b);
+            
+            i++;
+            j = j + 25;
         }
+        results_p.repaint();
     }
     
     @SuppressWarnings("unchecked")
@@ -58,6 +72,7 @@ public class SearchResults extends javax.swing.JFrame {
         back_btn = new javax.swing.JButton();
         results_p = new javax.swing.JPanel();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(2560, 1440));
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setPreferredSize(new java.awt.Dimension(1280, 720));
@@ -104,7 +119,7 @@ public class SearchResults extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void back_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_btnActionPerformed
-         this.hide();
+         this.dispose();
          if (signedin) {
             new MainPage(curUser).setVisible(true);
         }

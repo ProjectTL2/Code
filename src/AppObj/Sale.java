@@ -4,16 +4,15 @@ import DB.EditDoc;
 import GeoLoc.Geocode;
 
 public class Sale {
-    User curUser;
-    String title, desc, address;
+    String user, title, desc, address;
     double price;
     int sale_id;
 
     public Sale() {}
     
-    public Sale(User curUser, String title, String desc,
+    public Sale(String user, String title, String desc,
             double price, String address) {
-        this.curUser = curUser;
+        this.user = user;
         sale_id = CreateSaleId();
         this.title = title;
         this.desc = desc;
@@ -22,13 +21,13 @@ public class Sale {
         
         new Geocode().InsertLatLongDB(address, sale_id);
         EditDoc newEditDoc = new EditDoc();
-        newEditDoc.InsertSaleInDB(curUser.getUsername(),  sale_id, title, desc,
+        newEditDoc.InsertSaleInDB(user,  sale_id, title, desc,
                 price, address);
     }
     
     private int CreateSaleId() {
         int id;
-        id = (int) Math.random() * 1000;
+        id = (int) (Math.random() * 1000);
         return id;
     }
 
@@ -39,15 +38,15 @@ public class Sale {
     public void setSale_id(int sale_id) {
         this.sale_id = sale_id;
     }
+
+    public String getUsername() {
+        return user;
+    }
+
+    public void setUsername(String user) {
+        this.user = user;
+    }
     
-    public User getCurUser() {
-        return curUser;
-    }
-
-    public void setCurUser(User curUser) {
-        this.curUser = curUser;
-    }
-
     public String getTitle() {
         return title;
     }
