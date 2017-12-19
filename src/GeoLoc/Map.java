@@ -34,7 +34,6 @@ public class Map {
         jfxPanel = new JFXPanel();
         jfxPanel.setSize(680, 580);
         jfxPanel.setLocation(10, 80);
-        Marker[] markerx = new Markers().setMarker();
         
         Platform.runLater(() -> {
             mapView = new GoogleMapView();
@@ -52,12 +51,12 @@ public class Map {
                     .streetViewControl(false)
                     .zoomControl(false)
                     .mapType(MapTypeIdEnum.ROADMAP);
-                
-                for(int i=0; i<markerx.length; i++) {
-                    map.addMarker(markerx[i]);
-                }
-                
                 map = mapView.createMap(options);
+                
+                Marker[] markers = new Markers().setMarker();
+                for(int i=0; i<markers.length; i++) {
+                    map.addMarker(markers[i]);
+                }
             });
             scene = new Scene(mapView);
             jfxPanel.setScene(scene);
