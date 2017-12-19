@@ -34,7 +34,7 @@ public class SearchResults extends javax.swing.JFrame {
     
     private void setValues() {
         JLabel[] labels = new JLabel[sales.size()];
-        int i = 0, j = 50;
+        int i = 0, j = 25;
         
         if (new Query().checkIfQueryExists(query)) {
             for (Sale x : sales) {
@@ -42,12 +42,12 @@ public class SearchResults extends javax.swing.JFrame {
                 labels[i] = new JLabel();
                 labels[i].setBounds(50, j, 80, 20);
                 labels[i].setText(x.getTitle());
-                jPanel1.add(labels[i]);
+                results_p.add(labels[i]);
                 
                 i++;
-                j = j + 10;
+                j = j + 25;
             }
-            jPanel1.repaint();
+            results_p.repaint();
         }
     }
     
@@ -56,7 +56,7 @@ public class SearchResults extends javax.swing.JFrame {
     private void initComponents() {
 
         back_btn = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        results_p = new javax.swing.JPanel();
 
         setMaximumSize(new java.awt.Dimension(2560, 1440));
         setMinimumSize(new java.awt.Dimension(1280, 720));
@@ -70,15 +70,15 @@ public class SearchResults extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout results_pLayout = new javax.swing.GroupLayout(results_p);
+        results_p.setLayout(results_pLayout);
+        results_pLayout.setHorizontalGroup(
+            results_pLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 774, Short.MAX_VALUE)
+        results_pLayout.setVerticalGroup(
+            results_pLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 785, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -86,19 +86,15 @@ public class SearchResults extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 1520, Short.MAX_VALUE)
-                        .addComponent(back_btn))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(1530, Short.MAX_VALUE)
+                .addComponent(back_btn)
                 .addContainerGap())
+            .addComponent(results_p, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(results_p, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(back_btn)
                 .addContainerGap())
@@ -119,6 +115,6 @@ public class SearchResults extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back_btn;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel results_p;
     // End of variables declaration//GEN-END:variables
 }

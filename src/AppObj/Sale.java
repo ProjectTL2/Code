@@ -1,6 +1,7 @@
 package AppObj;
 
 import DB.EditDoc;
+import GeoLoc.Geocode;
 
 public class Sale {
     User curUser;
@@ -13,19 +14,22 @@ public class Sale {
     public Sale(User curUser, String title, String desc,
             double price, String address) {
         this.curUser = curUser;
-        this.sale_id = CreateSaleId();
+        sale_id = CreateSaleId();
         this.title = title;
         this.desc = desc;
         this.price = price;
         this.address = address;
         
+        new Geocode().InsertLatLongDB(address, sale_id);
         EditDoc newEditDoc = new EditDoc();
         newEditDoc.InsertSaleInDB(curUser.getUsername(),  sale_id, title, desc,
                 price, address);
     }
     
     private int CreateSaleId() {
-        return (int)(Math.random() * 1000);
+        int id;
+        id = (int) Math.random() * 1000;
+        return id;
     }
 
     public int getSale_id() {

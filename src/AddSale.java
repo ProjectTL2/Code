@@ -146,7 +146,6 @@ public class AddSale extends javax.swing.JFrame {
     }//GEN-LAST:event_cancel_btnActionPerformed
 
     private void add_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_btnActionPerformed
-        new Geocode().InsertLatLongDB(address_tf.getText());
         addSale();
         JOptionPane.showMessageDialog(null, "Η αγγελία σας προστέθηκε με επιτυχία.", "", JOptionPane.INFORMATION_MESSAGE);
         new MainPage(curUser).setVisible(true);
