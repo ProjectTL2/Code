@@ -1,6 +1,7 @@
 package DB;
 
 import AppObj.Sale;
+import AppObj.Sale_loc;
 import AppObj.User;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCursor;
@@ -70,4 +71,20 @@ public class Query {
         
         return sales;
     }
+       public List<Sale_loc> SearchMarkers(){
+     DBCon x = new DBCon();
+     List<Sale_loc> Markers = new ArrayList<>();
+     List<Document> Location = (List<Document>) x.mongocollection_sale_loc;
+     Location.stream().map((saleloc) -> {
+         Sale_loc loc= new Sale_loc();
+         loc.setLat(saleloc.getDouble("Lat"));
+         loc.setLongt(saleloc.getDouble("Longt"));
+         loc.setAddress(saleloc.getString("Address"));
+         loc.setSale_id(saleloc.getString("Sale_Id"));
+            return loc;
+        }).forEachOrdered((loc) -> { 
+            Markers.add(loc);
+        });
+     return Markers;
+    } 
 }
