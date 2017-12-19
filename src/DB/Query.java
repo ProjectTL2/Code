@@ -83,6 +83,7 @@ public class Query {
             Sale_loc loc = new Sale_loc();
             loc.setLat(saleloc.getDouble("Lat"));
             loc.setLongt(saleloc.getDouble("Longt"));
+            loc.setTitle(saleloc.getString("Title"));
             loc.setAddress(saleloc.getString("Address"));
             loc.setSale_id(saleloc.getInteger("Sale_Id"));
             Markers.add(loc);
