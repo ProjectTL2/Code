@@ -41,6 +41,14 @@ public class SearchResults extends javax.swing.JFrame {
         int i = 0, j = 25;
         
         for (Sale x : sales) {
+            JButton b = new JButton();
+            b.setText("+");
+            b.setBounds(50, j, 40, 20);
+            b.addActionListener((ActionEvent evt) -> {
+                new SaleItem(x).setVisible(true);
+            });
+            results_p.add(b);
+            
             titles[i] = new JLabel();
             titles[i].setBounds(100, j, 80, 20);
             titles[i].setText(x.getTitle());
@@ -50,14 +58,6 @@ public class SearchResults extends javax.swing.JFrame {
             descs[i].setBounds(150, j, 80, 20);
             descs[i].setText(x.getDesc());
             results_p.add(descs[i]);
-            
-            JButton b = new JButton();
-            b.setText("+");
-            b.setBounds(50, j, 40, 20);
-            b.addActionListener((ActionEvent evt) -> {
-                new SaleItem(x).setVisible(true);
-            });
-            results_p.add(b);
             
             i++;
             j = j + 25;
