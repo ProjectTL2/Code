@@ -70,6 +70,7 @@ public class SearchResults extends javax.swing.JFrame {
     private void initComponents() {
 
         back_btn = new javax.swing.JButton();
+        scrollable_p = new javax.swing.JScrollPane();
         results_p = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -85,31 +86,35 @@ public class SearchResults extends javax.swing.JFrame {
             }
         });
 
+        scrollable_p.setHorizontalScrollBar(null);
+
         javax.swing.GroupLayout results_pLayout = new javax.swing.GroupLayout(results_p);
         results_p.setLayout(results_pLayout);
         results_pLayout.setHorizontalGroup(
             results_pLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 1593, Short.MAX_VALUE)
         );
         results_pLayout.setVerticalGroup(
             results_pLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 785, Short.MAX_VALUE)
+            .addGap(0, 783, Short.MAX_VALUE)
         );
+
+        scrollable_p.setViewportView(results_p);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(1530, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(back_btn)
                 .addContainerGap())
-            .addComponent(results_p, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(scrollable_p, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(results_p, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(scrollable_p)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(back_btn)
                 .addContainerGap())
@@ -131,5 +136,6 @@ public class SearchResults extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back_btn;
     private javax.swing.JPanel results_p;
+    private javax.swing.JScrollPane scrollable_p;
     // End of variables declaration//GEN-END:variables
 }

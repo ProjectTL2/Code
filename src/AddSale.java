@@ -1,6 +1,5 @@
 import AppObj.Sale;
 import AppObj.User;
-import GeoLoc.Geocode;
 import javax.swing.JOptionPane;
 
 public class AddSale extends javax.swing.JFrame {
@@ -14,9 +13,8 @@ public class AddSale extends javax.swing.JFrame {
     }
     
     public void addSale() {
-        Sale newsale = new Sale(curUser.getUsername(), prd_title_tf.getText(),
-                prd_desc_tf.getText(), Double.parseDouble(prd_price_tf.getText()),
-                address_tf.getText());
+        new Sale(curUser.getUsername(), prd_title_tf.getText(), prd_desc_tf.getText(),
+                Double.parseDouble(prd_price_tf.getText()), address_tf.getText());
     }
     
     @SuppressWarnings("unchecked")

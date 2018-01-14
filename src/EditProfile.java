@@ -1,4 +1,3 @@
-
 import AppObj.User;
 
 public class EditProfile extends javax.swing.JFrame {

@@ -15,14 +15,12 @@ public class SignUp extends javax.swing.JFrame {
     
     public void SignUserUp(boolean bus_flag) {
         if (bus_flag) {
-            User newUser = new User(
-                    usrnm_tf.getText(), psswrd_tf.getText(), name_tf.getText(),
+            new User(usrnm_tf.getText(), psswrd_tf.getText(), name_tf.getText(),
                     surname_tf.getText(), email_tf.getText()+"@"+email_tf2.getText(),
                     afm_ep_tf.getText(), name_ep_tf.getText(), bday_tf.getText(), ph_num_tf.getText());
         }
         else {
-            User newUser = new User(
-                    usrnm_tf.getText(), psswrd_tf.getText(), name_tf.getText(),
+            new User(usrnm_tf.getText(), psswrd_tf.getText(), name_tf.getText(),
                     surname_tf.getText(), email_tf.getText()+"@"+email_tf2.getText(),
                     bday_tf.getText(), ph_num_tf.getText());
         }

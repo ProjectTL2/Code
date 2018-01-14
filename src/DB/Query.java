@@ -95,6 +95,7 @@ public class Query {
             loc.setTitle(saleloc.getString("Title"));
             loc.setAddress(saleloc.getString("Address"));
             loc.setSale_id(saleloc.getInteger("Sale_Id"));
+            
             Markers.add(loc);
         }
         return Markers;

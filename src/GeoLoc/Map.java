@@ -2,17 +2,12 @@ package GeoLoc;
 
 import AppObj.Sale_loc;
 import DB.DBCon;
-import DB.Query;
 import com.lynden.gmapsfx.GoogleMapView;
 import com.lynden.gmapsfx.javascript.object.GoogleMap;
-import com.lynden.gmapsfx.javascript.object.InfoWindow;
-import com.lynden.gmapsfx.javascript.object.InfoWindowOptions;
 import com.lynden.gmapsfx.javascript.object.LatLong;
 import com.lynden.gmapsfx.javascript.object.MapOptions;
 import com.lynden.gmapsfx.javascript.object.MapTypeIdEnum;
 import com.lynden.gmapsfx.javascript.object.Marker;
-import com.lynden.gmapsfx.javascript.object.MarkerOptions;
-import com.mongodb.DBCursor;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.application.Platform;
