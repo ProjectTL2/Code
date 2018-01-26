@@ -27,7 +27,7 @@ public class Map {
         
     public JFXPanel mapDisp() {
         jfxPanel = new JFXPanel();
-        jfxPanel.setSize(680, 580);
+        jfxPanel.setSize(1240, 580);
         jfxPanel.setLocation(10, 80);
         
         Platform.runLater(() -> {

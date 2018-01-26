@@ -8,7 +8,7 @@ public class User {
     public User() {
         this.username = "Guest";
     }
-        
+    
     //create obj User and insert in DB, for simple users.
     public User(String username, String password, String name,
             String surname, String email, String bday, String ph_num) {

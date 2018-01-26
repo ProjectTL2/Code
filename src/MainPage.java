@@ -174,9 +174,8 @@ public class MainPage extends JFrame {
     }//GEN-LAST:event_search_tfMouseClicked
 
     private void user_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_user_btnActionPerformed
-        if (!user_btn.getText().equals("Guest")) {
-            new UserProfile(curUser, true).setVisible(true);
-        }
+        this.dispose();
+        new UserProfile(curUser, !user_btn.getText().equals("Guest")).setVisible(true);
     }//GEN-LAST:event_user_btnActionPerformed
 
     private void search_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_btnActionPerformed

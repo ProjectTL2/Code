@@ -1,4 +1,5 @@
 import AppObj.User;
+import DB.EditDoc;
 
 public class UserProfile extends javax.swing.JFrame {
     
@@ -11,9 +12,10 @@ public class UserProfile extends javax.swing.JFrame {
         jButton1.setVisible(q);
         jButton2.setVisible(q);
         jButton5.setVisible(q);
+        delete_acc_btn.setVisible(q);
         username_lbl.setText("Χρήστης: " + user.getUsername());
         
-        if (user.getName_ep() == null) {
+        if (user.getName_ep() != null) {
             name_lbl.setText(user.getName() + " " + user.getSurname());
         }
         else {
@@ -37,6 +39,8 @@ public class UserProfile extends javax.swing.JFrame {
         ph_num_lbl = new javax.swing.JLabel();
         email_lbl = new javax.swing.JLabel();
         name_lbl = new javax.swing.JLabel();
+        delete_acc_btn = new javax.swing.JButton();
+        cancel_btn = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
 
@@ -76,6 +80,20 @@ public class UserProfile extends javax.swing.JFrame {
         name_lbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         name_lbl.setText("Name");
 
+        delete_acc_btn.setText("Delete Account");
+        delete_acc_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delete_acc_btnActionPerformed(evt);
+            }
+        });
+
+        cancel_btn.setText("Back");
+        cancel_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancel_btnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -97,8 +115,12 @@ public class UserProfile extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(delete_acc_btn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cancel_btn)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -117,10 +139,14 @@ public class UserProfile extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(name_lbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(ph_num_lbl)
-                        .addGap(11, 11, 11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(email_lbl)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(delete_acc_btn)
+                    .addComponent(cancel_btn))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -131,8 +157,21 @@ public class UserProfile extends javax.swing.JFrame {
         this.dispose();
         new EditProfile(user).setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void delete_acc_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_acc_btnActionPerformed
+        this.dispose();
+        new EditDoc().deleteUser(user.getUsername());
+        new MainPage().setVisible(true);
+    }//GEN-LAST:event_delete_acc_btnActionPerformed
+
+    private void cancel_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel_btnActionPerformed
+        this.dispose();
+        new MainPage(user).setVisible(true);
+    }//GEN-LAST:event_cancel_btnActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cancel_btn;
+    private javax.swing.JButton delete_acc_btn;
     private javax.swing.JLabel email_lbl;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

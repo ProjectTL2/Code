@@ -1,5 +1,7 @@
 package DB;
 
+import AppObj.User;
+import com.mongodb.BasicDBObject;
 import org.bson.Document;
 
 public class EditDoc {
@@ -33,5 +35,29 @@ public class EditDoc {
         
         DBCon x = new DBCon();
         x.mongocollection_sale.insertOne(document);
+    }
+    
+    public void deleteUser(String usernm){
+        DBCon x = new DBCon();
+        
+        x.dbcollection_user.remove(
+                new BasicDBObject().append("Username", usernm));
+    }
+    
+    public void updateUser(User user, User newuser){
+        DBCon x = new DBCon();
+        
+        BasicDBObject query = new BasicDBObject().append("Username", user.getUsername());
+        
+        x.dbcollection_user.update(query,
+                new BasicDBObject().append("Username", newuser.getUsername())
+                .append("Password", newuser.getPassword())
+                .append("Name", newuser.getName())
+                .append("Surname", newuser.getSurname())
+                .append("Email", newuser.getEmail())
+                .append("Afm_Ep", newuser.getAfm_ep())
+                .append("Name_Ep", newuser.getName_ep())
+                .append("Bday", newuser.getBday())
+                .append("Ph_Num", newuser.getPh_num()));
     }
 }

@@ -1,13 +1,22 @@
 import AppObj.User;
+import DB.EditDoc;
 
 public class EditProfile extends javax.swing.JFrame {
     
     User curUser = new User();
+    User newUser = new User();
     
     public EditProfile(User curUser) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.curUser = curUser;
+        
+        if (this.curUser.getAfm_ep().equals("")) {
+            name_ep_lbl.setVisible(false);
+            name_ep_tf.setVisible(false);
+            afm_lbl.setVisible(false);
+            afm_tf.setVisible(false);
+        }
         
         initValues();
     }
@@ -19,6 +28,20 @@ public class EditProfile extends javax.swing.JFrame {
         email_tf.setText(curUser.getEmail());
         phone_tf.setText(curUser.getPh_num());
         username_tf.setText(curUser.getUsername());
+        afm_lbl.setText(curUser.getAfm_ep());
+        name_ep_tf.setText(curUser.getName_ep());
+    }
+    
+    private void initnewUser() {
+        newUser.setName(name_tf.getText());
+        newUser.setSurname(surname_tf.getText());
+        newUser.setBday(bday_tf.getText());
+        newUser.setEmail(email_tf.getText());
+        newUser.setPh_num(phone_tf.getText());
+        newUser.setUsername(username_tf.getText());
+        newUser.setPassword(newpsswrd_tf.getText());
+        newUser.setAfm_ep(afm_tf.getText());
+        newUser.setName_ep(name_ep_tf.getText());
     }
     
     @SuppressWarnings("unchecked")
@@ -35,7 +58,6 @@ public class EditProfile extends javax.swing.JFrame {
         psswrd_lbl = new javax.swing.JLabel();
         oldpsswrd_lbl = new javax.swing.JLabel();
         newpsswrd_lbl = new javax.swing.JLabel();
-        deleteacc_btn = new javax.swing.JButton();
         submit_btn = new javax.swing.JButton();
         cancel_btn = new javax.swing.JButton();
         name_tf = new javax.swing.JTextField();
@@ -46,6 +68,10 @@ public class EditProfile extends javax.swing.JFrame {
         username_tf = new javax.swing.JTextField();
         oldpsswrd_tf = new javax.swing.JTextField();
         newpsswrd_tf = new javax.swing.JTextField();
+        afm_lbl = new javax.swing.JLabel();
+        afm_tf = new javax.swing.JTextField();
+        name_ep_lbl = new javax.swing.JLabel();
+        name_ep_tf = new javax.swing.JTextField();
 
         frame_lbl.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         frame_lbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -87,9 +113,12 @@ public class EditProfile extends javax.swing.JFrame {
         newpsswrd_lbl.setLabelFor(newpsswrd_tf);
         newpsswrd_lbl.setText("New:");
 
-        deleteacc_btn.setText("Delete Account");
-
         submit_btn.setText("Submit");
+        submit_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submit_btnActionPerformed(evt);
+            }
+        });
 
         cancel_btn.setText("Cancel");
         cancel_btn.addActionListener(new java.awt.event.ActionListener() {
@@ -97,6 +126,14 @@ public class EditProfile extends javax.swing.JFrame {
                 cancel_btnActionPerformed(evt);
             }
         });
+
+        afm_lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        afm_lbl.setLabelFor(afm_tf);
+        afm_lbl.setText("ΑΦΜ:");
+
+        name_ep_lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        name_ep_lbl.setLabelFor(name_ep_tf);
+        name_ep_lbl.setText("Όνομα Επ.:");
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -109,9 +146,7 @@ public class EditProfile extends javax.swing.JFrame {
                         .addContainerGap()
                         .add(submit_btn)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(cancel_btn)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 139, Short.MAX_VALUE)
-                        .add(deleteacc_btn))
+                        .add(cancel_btn))
                     .add(layout.createSequentialGroup()
                         .add(21, 21, 21)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
@@ -122,7 +157,7 @@ public class EditProfile extends javax.swing.JFrame {
                             .add(layout.createSequentialGroup()
                                 .add(surname_lbl, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 58, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(surname_tf, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 174, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                .add(surname_tf))
                             .add(layout.createSequentialGroup()
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                     .add(bday_lbl)
@@ -131,34 +166,35 @@ public class EditProfile extends javax.swing.JFrame {
                                     .add(psswrd_lbl)
                                     .add(oldpsswrd_lbl)
                                     .add(phone_lbl)
-                                    .add(newpsswrd_lbl))
+                                    .add(newpsswrd_lbl)
+                                    .add(afm_lbl)
+                                    .add(name_ep_lbl))
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(bday_tf)
-                                    .add(layout.createSequentialGroup()
-                                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                            .add(email_tf, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 144, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                            .add(phone_tf, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 144, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                            .add(username_tf, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 144, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                            .add(oldpsswrd_tf, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 144, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                            .add(newpsswrd_tf, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 144, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                                        .add(0, 0, Short.MAX_VALUE)))))
-                        .add(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                                    .add(name_ep_tf, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 144, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(afm_tf, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 144, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                                        .add(org.jdesktop.layout.GroupLayout.LEADING, bday_tf)
+                                        .add(org.jdesktop.layout.GroupLayout.LEADING, phone_tf, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                                        .add(org.jdesktop.layout.GroupLayout.LEADING, username_tf, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                                        .add(org.jdesktop.layout.GroupLayout.LEADING, oldpsswrd_tf, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                                        .add(org.jdesktop.layout.GroupLayout.LEADING, newpsswrd_tf, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                                        .add(org.jdesktop.layout.GroupLayout.LEADING, email_tf)))))))
+                .addContainerGap(145, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(frame_lbl, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 58, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(49, 49, 49)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(name_lbl, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 25, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(name_tf, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(54, 54, 54)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                    .add(name_tf)
+                    .add(name_lbl, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(surname_lbl, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 26, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(surname_tf, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                    .add(surname_tf)
+                    .add(surname_lbl, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(bday_lbl, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 24, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -185,11 +221,18 @@ public class EditProfile extends javax.swing.JFrame {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(newpsswrd_lbl)
                     .add(newpsswrd_tf, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 116, Short.MAX_VALUE)
+                .add(18, 18, 18)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(afm_lbl)
+                    .add(afm_tf, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(name_ep_lbl)
+                    .add(name_ep_tf, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(58, 58, 58)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(submit_btn)
-                    .add(cancel_btn)
-                    .add(deleteacc_btn))
+                    .add(cancel_btn))
                 .addContainerGap())
         );
 
@@ -200,15 +243,25 @@ public class EditProfile extends javax.swing.JFrame {
         this.dispose();
         new UserProfile(curUser, true).setVisible(true);
     }//GEN-LAST:event_cancel_btnActionPerformed
+
+    private void submit_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submit_btnActionPerformed
+        initnewUser();
+        new EditDoc().updateUser(curUser, newUser);
+        this.dispose();
+        new UserProfile(newUser, true).setVisible(true);
+    }//GEN-LAST:event_submit_btnActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel afm_lbl;
+    private javax.swing.JTextField afm_tf;
     private javax.swing.JLabel bday_lbl;
     private javax.swing.JTextField bday_tf;
     private javax.swing.JButton cancel_btn;
-    private javax.swing.JButton deleteacc_btn;
     private javax.swing.JLabel email_lbl;
     private javax.swing.JTextField email_tf;
     private javax.swing.JLabel frame_lbl;
+    private javax.swing.JLabel name_ep_lbl;
+    private javax.swing.JTextField name_ep_tf;
     private javax.swing.JLabel name_lbl;
     private javax.swing.JTextField name_tf;
     private javax.swing.JLabel newpsswrd_lbl;
