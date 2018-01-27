@@ -232,13 +232,14 @@ public class SignUp extends javax.swing.JFrame {
 
     private void signup_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signup_btnActionPerformed
         SignUserUp();
-        InfoChecking error = new InfoChecking("", curUser, psswrd_tf2.getText());
+        InfoChecking error = new InfoChecking(curUser, psswrd_tf2.getText());
         if (error.getErrormsg().equals("")) {
             new EditDoc().InsertUserInDB(curUser);
             this.dispose();
             new MainPage().setVisible(true);
         } else {
-            JOptionPane.showMessageDialog(null, substring(error.getErrormsg(), 1), "Some ERRORs were found!", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, substring(error.getErrormsg(), 1),
+                    "Error(s) found: " + error.getCount(), JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_signup_btnActionPerformed
 

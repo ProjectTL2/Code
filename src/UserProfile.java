@@ -5,22 +5,24 @@ public class UserProfile extends javax.swing.JFrame {
     
     User user = new User();
     
-    public UserProfile(User user, boolean q) {
+    public UserProfile(User user, boolean isCurUser) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.user = user;
-        jButton1.setVisible(q);
-        jButton2.setVisible(q);
-        jButton5.setVisible(q);
-        delete_acc_btn.setVisible(q);
+        
+        edit_btn.setVisible(isCurUser);
+        wish_btn.setVisible(isCurUser);
+        sales_btn.setVisible(isCurUser);
+        back_btn.setVisible(isCurUser);
+        delete_acc_btn.setVisible(isCurUser);
         
         if (user.getIs_ep()) {
-            username_lbl.setText(user.getName_ep());
+            username_lbl.setVisible(false);
             name_lbl.setText(user.getName_ep());
         }
         else {
             username_lbl.setText(user.getUsername());
-            name_lbl.setText(user.getName());
+            name_lbl.setText(user.getName() + " " + user.getSurname());
         }
         
         ph_num_lbl.setText(user.getPh_num());
@@ -33,15 +35,15 @@ public class UserProfile extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         username_lbl = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        edit_btn = new javax.swing.JButton();
+        wish_btn = new javax.swing.JButton();
+        sales_btn = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         ph_num_lbl = new javax.swing.JLabel();
         email_lbl = new javax.swing.JLabel();
         name_lbl = new javax.swing.JLabel();
         delete_acc_btn = new javax.swing.JButton();
-        cancel_btn = new javax.swing.JButton();
+        back_btn = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
 
@@ -58,16 +60,16 @@ public class UserProfile extends javax.swing.JFrame {
 
         username_lbl.setText("Username");
 
-        jButton1.setText("Επεξεργασία Προφιλ");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        edit_btn.setText("Επεξεργασία Προφιλ");
+        edit_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                edit_btnActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Wishlist");
+        wish_btn.setText("Wishlist");
 
-        jButton5.setText("Αγγελίες Μου");
+        sales_btn.setText("Αγγελίες Μου");
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Στοιχεία:");
@@ -88,10 +90,10 @@ public class UserProfile extends javax.swing.JFrame {
             }
         });
 
-        cancel_btn.setText("Back");
-        cancel_btn.addActionListener(new java.awt.event.ActionListener() {
+        back_btn.setText("Back");
+        back_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancel_btnActionPerformed(evt);
+                back_btnActionPerformed(evt);
             }
         });
 
@@ -112,15 +114,15 @@ public class UserProfile extends javax.swing.JFrame {
                             .addComponent(email_lbl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(username_lbl)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(edit_btn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(wish_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(sales_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(delete_acc_btn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cancel_btn)))
+                        .addComponent(back_btn)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -133,9 +135,9 @@ public class UserProfile extends javax.swing.JFrame {
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2)
-                            .addComponent(jButton5)))
+                            .addComponent(edit_btn)
+                            .addComponent(wish_btn)
+                            .addComponent(sales_btn)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -147,17 +149,17 @@ public class UserProfile extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(delete_acc_btn)
-                    .addComponent(cancel_btn))
+                    .addComponent(back_btn))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void edit_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edit_btnActionPerformed
         this.dispose();
         new EditProfile(user).setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_edit_btnActionPerformed
 
     private void delete_acc_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_acc_btnActionPerformed
         this.dispose();
@@ -165,22 +167,22 @@ public class UserProfile extends javax.swing.JFrame {
         new MainPage().setVisible(true);
     }//GEN-LAST:event_delete_acc_btnActionPerformed
 
-    private void cancel_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel_btnActionPerformed
+    private void back_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_btnActionPerformed
         this.dispose();
         new MainPage(user).setVisible(true);
-    }//GEN-LAST:event_cancel_btnActionPerformed
+    }//GEN-LAST:event_back_btnActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton cancel_btn;
+    private javax.swing.JButton back_btn;
     private javax.swing.JButton delete_acc_btn;
+    private javax.swing.JButton edit_btn;
     private javax.swing.JLabel email_lbl;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel name_lbl;
     private javax.swing.JLabel ph_num_lbl;
+    private javax.swing.JButton sales_btn;
     private javax.swing.JLabel username_lbl;
+    private javax.swing.JButton wish_btn;
     // End of variables declaration//GEN-END:variables
 }
