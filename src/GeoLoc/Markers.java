@@ -18,12 +18,12 @@ public class Markers {
         int i=0;
         
         for (Sale_loc x : location){
-            LatLong Tzini = new LatLong(x.getLat(), x.getLongt());
+            LatLong place = new LatLong(x.getLat(), x.getLongt());
             MarkerOptions markerOptions = new MarkerOptions();
-            markerOptions.position(Tzini);
+            markerOptions.position(place);
             markerOptions.label(x.getTitle());
-            Marker TzinisMarker = new Marker(markerOptions);
-            markers[i] = TzinisMarker;
+            Marker placeMarker = new Marker(markerOptions);
+            markers[i] = placeMarker;
             
             i++;
         }

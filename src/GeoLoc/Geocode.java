@@ -19,19 +19,19 @@ import javafx.scene.Scene;
 import org.bson.Document;
 
 public class Geocode {
-    //To return.
-    JFXPanel jfxPanel;
-    List<Sale_loc> location = new ArrayList<>();
-   
-    //Other.
-    GoogleMap map;
-    GoogleMapView mapView;
-    Scene scene;
-    
     //Geocode.
     LatLong latlong;
     GeocodingService geocodingService;
     String address;
+    
+    //Map to return.
+    JFXPanel jfxPanel;
+    List<Sale_loc> location = new ArrayList<>();
+    
+    //Other.
+    GoogleMap map;
+    GoogleMapView mapView;
+    Scene scene;
         
     public JFXPanel mapDisp() {
         jfxPanel = new JFXPanel();
@@ -60,47 +60,6 @@ public class Geocode {
                 for(int i=0; i<markers.length; i++) {
                     map.addMarker(markers[i]);
                 }
-            });
-            scene = new Scene(mapView);
-            jfxPanel.setScene(scene);
-        });
-        return jfxPanel;
-    }
-    
-    public JFXPanel mapDisp(String address) {
-        jfxPanel = new JFXPanel();
-        jfxPanel.setSize(1285, 640);
-        jfxPanel.setLocation(10, 80);
-                
-        Platform.runLater(() -> {
-            mapView = new GoogleMapView();       
-            mapView.addMapInializedListener(()-> {
-                geocodingService = new GeocodingService();
-                geocodingService.geocode(address, (GeocodingResult[] results, GeocoderStatus status) -> {
-                    latlong = null;
-                    if (status == GeocoderStatus.OK) {
-                        latlong = new LatLong(results[0].getGeometry().getLocation().getLatitude(),
-                                results[0].getGeometry().getLocation().getLongitude());
-                    }
-                    LatLong center = new LatLong(latlong.getLatitude(), latlong.getLongitude());        
-                    MapOptions options = new MapOptions()
-                        .mapMarker(true)
-                        .center(center)
-                        .zoom(5)
-                        .overviewMapControl(false)
-                        .panControl(false)
-                        .rotateControl(false)
-                        .scaleControl(false)
-                        .streetViewControl(false)
-                        .zoomControl(false)
-                        .mapType(MapTypeIdEnum.ROADMAP);
-                    map = mapView.createMap(options);
-
-                    Marker[] markers = new Markers().setMarker();
-                    for(int i=0; i<markers.length; i++) {
-                        map.addMarker(markers[i]);
-                    }
-                });
             });
             scene = new Scene(mapView);
             jfxPanel.setScene(scene);

@@ -1,4 +1,4 @@
-import AppObj.Error;
+import AppObj.*;
 import AppObj.User;
 import DB.EditDoc;
 import javax.swing.JOptionPane;
@@ -217,7 +217,7 @@ public class SignUp extends javax.swing.JFrame {
 
     private void signup_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signup_btnActionPerformed
         SignUserUp();
-        Error error = new Error(curUser, psswrd_tf2.getText());
+        UserError error = new UserError(curUser, psswrd_tf2.getText());
         if (error.getErrormsg().equals("")) {
             new EditDoc().InsertUserInDB(curUser);
             this.dispose();

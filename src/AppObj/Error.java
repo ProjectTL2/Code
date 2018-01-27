@@ -8,30 +8,28 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Error {
-    User curUser;
-    String errormsg;
     int count;
-        
-    public Error (User curUser, String pass_val){
-        String errormsg;
-        this.curUser = curUser;
-        
-        errormsg = checkUsername(curUser.getUsername())
-                + checkPassword(curUser.getPassword(), pass_val)
-                + checkName(curUser.getName(), curUser.getSurname())
-                + checkEmail(curUser.getEmail())
-                + checkBday(curUser.getBday())
-                + checkPh_num(curUser.ph_num);
-        
+    String errormsg;
+    final private List<String> nonValidChars = Arrays.asList("`", "~", "!", "@",
+            "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "=", "+", "[",
+            "{", "]", "}", ";", ":", "'", "\"", "\\", "|", ",", "<", ".", ">",
+            "/", "?", " ");
+    final private List<String> numericals = Arrays.asList("0", "1", "2", "3",
+            "4", "5", "6", "7", "8", "9");
+    
+//<editor-fold defaultstate="collapsed" desc="Constructor, Getter & Setter">
+    public Error() {}
+    public Error(String errormsg, int count) {
         this.errormsg = errormsg;
+        this.count = count;
+    }
+    
+    public int getCount() {
+        return count;
     }
 
-    public User getCurUser() {
-        return curUser;
-    }
-
-    public void setCurUser(User curUser) {
-        this.curUser = curUser;
+    public void setCount(int count) {
+        this.count = count;
     }
 
     public String getErrormsg() {
@@ -41,25 +39,18 @@ public class Error {
     public void setErrormsg(String errormsg) {
         this.errormsg = errormsg;
     }
-
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
-    }
+//</editor-fold>
     
-    //
-    //-------!CHECKS!---------
-    //
-    final private List<String> nonValidChars = Arrays.asList("`", "~", "!", "@",
-            "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "=", "+", "[",
-            "{", "]", "}", ";", ":", "'", "\"", "\\", "|", ",", "<", ".", ">",
-            "/", "?", " ");
-    
-    final private List<String> numericals = Arrays.asList("0", "1", "2", "3",
-            "4", "5", "6", "7", "8", "9");
+//<editor-fold defaultstate="collapsed" desc="SignUp Checks">
+    public Error findErrors(User curUser, String pass_val) {
+        String errormsg = checkUsername(curUser.getUsername())
+                + checkPassword(curUser.getPassword(), pass_val)
+                + checkName(curUser.getName(), curUser.getSurname())
+                + checkEmail(curUser.getEmail())
+                + checkBday(curUser.getBday())
+                + checkPh_num(curUser.ph_num);
+        return new Error(errormsg, count);
+    }
     
     private String checkUsername(String username) {
         String errormsg = "";
@@ -186,13 +177,14 @@ public class Error {
             if (bday.length() != 4) {
                 count++;
                 errormsg = errormsg + "\n" + count + ") " +
-                        "A year has 4 numbers (at the moment) \"" + bday +
-                        "\" this doesn't.";
+                        "A year has 4 numbers (at the moment) this \"" + bday +
+                        "\" doesn't.";
             }
 
             int intBday = Integer.parseInt(bday);
             int curYear = Calendar.getInstance().get(Calendar.YEAR);
             if (intBday > curYear-16 || intBday < curYear-100) {
+                count++;
                 errormsg = errormsg + "\n" + count + ") " +
                         "Minors, mummies and time travelers shall not pass.";
             }
@@ -224,10 +216,16 @@ public class Error {
         }
         
         if (temp_count == count && phone.length() != 10) {
+            count++;
             errormsg = errormsg + "\n" + count + ") " +
                     "Phone numbers contain 10 numbers.";
         }
         
         return errormsg;
     }
+//</editor-fold>
+    
+//<editor-fold defaultstate="collapsed" desc="AddSale Checks">
+    
+//</editor-fold>
 }

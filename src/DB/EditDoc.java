@@ -27,7 +27,7 @@ public class EditDoc {
         x.mongocollection_user.insertOne(document);
     }
     
-    //Method to insert sales in DB.
+    //Method to insert sales in DB and sales location.
     public void InsertSaleInDB(Sale newSale) {
         
         DBCon x = new DBCon();
