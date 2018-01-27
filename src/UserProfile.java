@@ -162,17 +162,19 @@ public class UserProfile extends javax.swing.JFrame {
     }//GEN-LAST:event_edit_btnActionPerformed
 
     private void delete_acc_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_acc_btnActionPerformed
-        Object[] jOptions = {"YES", "NO"};
+        Object[] jOptions = {"YES", "NOT SURE", "NO"};
         
         int choice = JOptionPane.showOptionDialog(null, "Your account will be terminated and the programm will shutdown\n"
                 + "are you sure you want to procced?", "WARNING",
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
-                null, jOptions, jOptions[1]);
+                null, jOptions, jOptions[2]);
         
         if (choice == 0) {
             new EditDoc().deleteUser(user.getUsername());
             this.dispose();
             System.exit(0);
+        } else if (choice == 1) {
+            JOptionPane.showMessageDialog(null, "MAKE UP YOUR MIND THEN!");
         }
     }//GEN-LAST:event_delete_acc_btnActionPerformed
 
