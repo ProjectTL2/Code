@@ -1,8 +1,12 @@
+import AppObj.InfoChecking;
 import AppObj.User;
-import DB.Query;
+import DB.EditDoc;
 import javax.swing.JOptionPane;
+import static jdk.nashorn.internal.objects.NativeString.substring;
 
 public class SignUp extends javax.swing.JFrame {
+    
+    User curUser = new User();
     
     public SignUp() {
         initComponents();
@@ -13,17 +17,11 @@ public class SignUp extends javax.swing.JFrame {
         afm_ep_tf.setVisible(false);
     }
     
-    public void SignUserUp(boolean bus_flag) {
-        if (bus_flag) {
-            new User(usrnm_tf.getText(), psswrd_tf.getText(), name_tf.getText(),
-                    surname_tf.getText(), email_tf.getText()+"@"+email_tf2.getText(),
-                    afm_ep_tf.getText(), name_ep_tf.getText(), bday_tf.getText(), ph_num_tf.getText());
-        }
-        else {
-            new User(usrnm_tf.getText(), psswrd_tf.getText(), name_tf.getText(),
-                    surname_tf.getText(), email_tf.getText()+"@"+email_tf2.getText(),
-                    bday_tf.getText(), ph_num_tf.getText());
-        }
+    public void SignUserUp() {
+        this.curUser = new User(usrnm_tf.getText(), psswrd_tf.getText(), name_tf.getText(),
+                surname_tf.getText(), email_tf.getText()+"@"+email_tf2.getText(), 
+                bus_cb.isSelected(), afm_ep_tf.getText(), name_ep_tf.getText(), 
+                bday_tf.getText(), ph_num_tf.getText());
     }
     
     @SuppressWarnings("unchecked")
@@ -233,12 +231,15 @@ public class SignUp extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void signup_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signup_btnActionPerformed
-        if (!new Query().checkIfUsrnmExists(usrnm_tf.getText())) {
-            SignUserUp(bus_cb.isSelected());
+        SignUserUp();
+        InfoChecking error = new InfoChecking("", curUser, psswrd_tf2.getText());
+        if (error.getErrormsg().equals("")) {
+            new EditDoc().InsertUserInDB(curUser);
             this.dispose();
             new MainPage().setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, substring(error.getErrormsg(), 1), "Some ERRORs were found!", JOptionPane.INFORMATION_MESSAGE);
         }
-        else JOptionPane.showMessageDialog(null, "The username that you chose is already taken. Please chose another one.", "Username issue!", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_signup_btnActionPerformed
 
     private void cancel_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel_btnActionPerformed
@@ -248,8 +249,8 @@ public class SignUp extends javax.swing.JFrame {
 
     private void bus_cbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bus_cbActionPerformed
         name_ep_tf.setVisible(!name_ep_tf.isVisible());
-        afm_ep_tf.setVisible(!afm_ep_tf.isVisible());
         name_ep_lbl.setVisible(!name_ep_lbl.isVisible());
+        afm_ep_tf.setVisible(!afm_ep_tf.isVisible());
         afm_ep_lbl.setVisible(!afm_ep_lbl.isVisible());
     }//GEN-LAST:event_bus_cbActionPerformed
 

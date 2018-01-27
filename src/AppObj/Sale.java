@@ -18,11 +18,6 @@ public class Sale {
         this.desc = desc;
         this.price = price;
         this.address = address;
-        
-        new Geocode().InsertLatLongDB(title, address, sale_id);
-        EditDoc newEditDoc = new EditDoc();
-        newEditDoc.InsertSaleInDB(user,  sale_id, title, desc,
-                price, address);
     }
     
     private int CreateSaleId() {

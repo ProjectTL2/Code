@@ -1,9 +1,8 @@
 package AppObj;
 
-import DB.EditDoc;
-
 public class User {
     String name, surname, username, password, email, bday, ph_num, afm_ep, name_ep;
+    boolean is_ep;
     
     public User() {
         this.username = "Guest";
@@ -11,38 +10,18 @@ public class User {
     
     //create obj User and insert in DB, for simple users.
     public User(String username, String password, String name,
-            String surname, String email, String bday, String ph_num) {
+            String surname, String email, boolean is_ep, String afm_ep,
+            String name_ep, String bday, String ph_num) {
         this.username = username;
         this.password = password;
         this.name = name;
         this.surname = surname;
         this.email = email;
-        this.afm_ep = null;
-        this.name_ep = null;
-        this.bday = bday;
-        this.ph_num = ph_num;
-        
-        EditDoc newEditDoc = new EditDoc();
-        newEditDoc.InsertUserInDB(username, password, name, surname,
-                email, null, null, bday, ph_num);
-    }
-    
-    //create obj User and insert in DB, for businesses.
-    public User(String username, String password, String name, String surname,
-            String email, String afm_ep, String name_ep ,String bday, String ph_num) {
-        this.username = username;
-        this.password = password;
-        this.name = name;
-        this.surname = surname;
-        this.email = email;
+        this.is_ep = is_ep;
         this.afm_ep = afm_ep;
         this.name_ep = name_ep;
         this.bday = bday;
         this.ph_num = ph_num;
-        
-        EditDoc newEditDoc = new EditDoc();
-        newEditDoc.InsertUserInDB(username, password, name, surname,
-                email, afm_ep, name_ep, bday, ph_num);
     }
     
     public String getName() {
@@ -115,5 +94,13 @@ public class User {
 
     public void setName_ep(String name_ep) {
         this.name_ep = name_ep;
+    }
+
+    public boolean getIs_ep() {
+        return is_ep;
+    }
+
+    public void setIs_ep(boolean is_ep) {
+        this.is_ep = is_ep;
     }
 }

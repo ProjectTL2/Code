@@ -15,8 +15,7 @@ public class SignIn extends javax.swing.JFrame {
     }
     
     public User returnUser(String username) {
-        Query currentSearch = new Query();
-        return currentSearch.returnUser(username);
+        return new Query().returnUser(username);
     }
     
     @SuppressWarnings("unchecked")

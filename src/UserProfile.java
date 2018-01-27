@@ -13,13 +13,14 @@ public class UserProfile extends javax.swing.JFrame {
         jButton2.setVisible(q);
         jButton5.setVisible(q);
         delete_acc_btn.setVisible(q);
-        username_lbl.setText("Χρήστης: " + user.getUsername());
         
-        if (user.getName_ep() != null) {
-            name_lbl.setText(user.getName() + " " + user.getSurname());
+        if (user.getIs_ep()) {
+            username_lbl.setText(user.getName_ep());
+            name_lbl.setText(user.getName_ep());
         }
         else {
-            name_lbl.setText(user.getName_ep());
+            username_lbl.setText(user.getUsername());
+            name_lbl.setText(user.getName());
         }
         
         ph_num_lbl.setText(user.getPh_num());

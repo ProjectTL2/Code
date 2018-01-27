@@ -42,6 +42,7 @@ public class Query {
             usert.setName(every.getString("Name"));
             usert.setSurname(every.getString("Surname"));
             usert.setEmail(every.getString("Email"));
+            usert.setIs_ep(every.getBoolean("Is_Ep"));
             usert.setAfm_ep(every.getString("Afm_Ep"));
             usert.setName_ep(every.getString("Name_Ep"));
             usert.setBday(every.getString("Bday"));

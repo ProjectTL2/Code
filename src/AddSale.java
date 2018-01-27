@@ -1,10 +1,12 @@
 import AppObj.Sale;
 import AppObj.User;
+import DB.EditDoc;
 import javax.swing.JOptionPane;
 
 public class AddSale extends javax.swing.JFrame {
     
     User curUser = new User();
+    Sale newSale = new Sale();
     
     public AddSale(User curUser) {
         initComponents();
@@ -13,7 +15,7 @@ public class AddSale extends javax.swing.JFrame {
     }
     
     public void addSale() {
-        new Sale(curUser.getUsername(), prd_title_tf.getText(), prd_desc_tf.getText(),
+        this.newSale = new Sale(curUser.getUsername(), prd_title_tf.getText(), prd_desc_tf.getText(),
                 Double.parseDouble(prd_price_tf.getText()), address_tf.getText());
     }
     
@@ -145,6 +147,7 @@ public class AddSale extends javax.swing.JFrame {
 
     private void add_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_btnActionPerformed
         addSale();
+        new EditDoc().InsertSaleInDB(newSale);
         JOptionPane.showMessageDialog(null, "Η αγγελία σας προστέθηκε με επιτυχία.", "", JOptionPane.INFORMATION_MESSAGE);
         this.hide();
     }//GEN-LAST:event_add_btnActionPerformed

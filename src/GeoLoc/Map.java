@@ -1,7 +1,6 @@
 package GeoLoc;
 
 import AppObj.Sale_loc;
-import DB.DBCon;
 import com.lynden.gmapsfx.GoogleMapView;
 import com.lynden.gmapsfx.javascript.object.GoogleMap;
 import com.lynden.gmapsfx.javascript.object.LatLong;
@@ -17,7 +16,6 @@ import javafx.scene.Scene;
 public class Map {
     //To return.
     JFXPanel jfxPanel;
-    DBCon z = new DBCon();
     List<Sale_loc> location = new ArrayList<>();
    
     //Other.
@@ -34,11 +32,11 @@ public class Map {
             mapView = new GoogleMapView();
                         
             mapView.addMapInializedListener(()-> {
-                LatLong center = new LatLong(41.0835903,23.5473673);        
+                LatLong center = new LatLong(38.1634017,25.0512624);        
                 MapOptions options = new MapOptions()
                     .mapMarker(true)
                     .center(center)
-                    .zoom(15)
+                    .zoom(6)
                     .overviewMapControl(false)
                     .panControl(false)
                     .rotateControl(false)
