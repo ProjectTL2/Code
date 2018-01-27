@@ -34,6 +34,7 @@ public class InfoChecking {
         this.errormsg = errormsg;
     }
     
+    //--------CHECKS----------
     final private List<String> nonValidChars = Arrays.asList("!", "@", "#", "$", "%", "^", "&",
             "*", "(", ")", "_", "+", "=", "{", "[", "}", "]", ";", ":", "'", "\"",
             "|", "\\", "<", ">", ".", ",", "/", "?", "`", "~", " ");
