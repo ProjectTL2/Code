@@ -174,7 +174,8 @@ public class UserProfile extends javax.swing.JFrame {
             this.dispose();
             System.exit(0);
         } else if (choice == 1) {
-            JOptionPane.showMessageDialog(null, "MAKE UP YOUR MIND THEN!");
+            JOptionPane.showMessageDialog(null, "MAKE UP YOUR MIND THEN!",
+                    ">:^(", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_delete_acc_btnActionPerformed
 

@@ -3,6 +3,8 @@ package AppObj;
 import DB.Query;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class InfoChecking {
     User curUser;
@@ -10,11 +12,13 @@ public class InfoChecking {
     int count;
         
     public InfoChecking (User curUser, String pass_val){
-        String errormsg = "";
+        String errormsg;
         this.curUser = curUser;
         
-        errormsg = checkUsername(errormsg, curUser.getUsername())
-                + checkPassword(errormsg, curUser.getPassword(), pass_val);
+        errormsg = checkUsername(curUser.getUsername())
+                + checkPassword(curUser.getPassword(), pass_val)
+                + checkName(curUser.getName(), curUser.getSurname())
+                + checkEmail(curUser.getEmail());
         
         this.errormsg = errormsg;
     }
@@ -46,12 +50,16 @@ public class InfoChecking {
     //
     //-------!CHECKS!---------
     //
-    final private List<String> nonValidChars = Arrays.asList("!", "@", "#", "$",
-            "%", "^", "&", "*", "(", ")", "_", "+", "=", "{", "[", "}", "]",
-            ";", ":", "'", "\"", "|", "\\", "<", ">", ".", ",", "/", "?", "`",
-            "~", " ");
+    final private List<String> nonValidChars = Arrays.asList("`", "~", "!", "@",
+            "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "=", "+", "[",
+            "{", "]", "}", ";", ":", "'", "\"", "\\", "|", ",", "<", ".", ">",
+            "/", "?", " ");
     
-    private String checkUsername(String errormsg, String username) {
+    final private List<String> numericals = Arrays.asList("0", "1", "2", "3",
+            "4", "5", "6", "7", "8", "9");
+    
+    private String checkUsername(String username) {
+        String errormsg = "";
         
         if (new Query().checkIfUsrnmExists(username)) {
             count++;
@@ -59,7 +67,7 @@ public class InfoChecking {
                     "Username already exists.";
         }
         
-        if (username.length() == 0) {
+        if (username.equals("")) {
             count++;
             errormsg = errormsg + "\n" + count + ") " +
                     "Empty Username isn't valid.";
@@ -71,14 +79,16 @@ public class InfoChecking {
                 errormsg = errormsg + "\n" + count + ") " +
                         "Use of special charcters like \"" + i +
                         "\" in the Username isn't valid.";
+                break;
             }
         }
         
         return errormsg;
     }
     
-    private String checkPassword(String errormsg, String password, String pass_val) {
-        
+    private String checkPassword(String password, String pass_val) {
+        String errormsg = "";
+                
         if (!password.equals(pass_val)) {
             count++;
             errormsg = errormsg + "\n" + count + ") " +
@@ -95,6 +105,52 @@ public class InfoChecking {
             count++;
             errormsg = errormsg + "\n" + count + ") " +
                     "Spaces are not allowed in the Password.";
+        }
+        
+        return errormsg;
+    }
+    
+    private String checkName(String name, String surname) {
+        String errormsg = "";        
+        
+        if (name.equals("") || surname.equals("")) {
+            count++;
+            errormsg = errormsg + "\n" + count + ") " +
+                    "Empty Name isn't valid.";
+        }
+        
+        for (String i : nonValidChars) {
+            if (name.contains(i) || surname.contains(i)) {
+                count++;
+                errormsg = errormsg + "\n" + count + ") " +
+                        "Use of special charcters like \"" + i +
+                        "\" in the Name isn't valid.";
+                break;
+            }
+        }
+        
+        for (String i : numericals) {
+            if (name.contains(i) || surname.contains(i)) {
+                count++;
+                errormsg = errormsg + "\n" + count + ") " +
+                        "Use of numbers in the Name isn't valid.";
+                break;
+            }
+        }
+        
+        return errormsg;
+    }
+    
+    private String checkEmail(String email) {
+        String errormsg = "";
+        
+        Pattern pat = Pattern.compile(".+@.+\\.[a-z]+");
+        Matcher mat = pat.matcher(email);
+        boolean matFound = mat.matches();
+        if (!matFound) {
+            count++;
+            errormsg = errormsg + "\n" + count + ") " + email +
+                    " this doesn't look like an e-m@ail :(";
         }
         
         return errormsg;
