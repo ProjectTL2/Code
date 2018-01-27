@@ -1,4 +1,4 @@
-import AppObj.InfoChecking;
+import AppObj.Error;
 import AppObj.User;
 import DB.EditDoc;
 import javax.swing.JOptionPane;
@@ -19,9 +19,9 @@ public class SignUp extends javax.swing.JFrame {
     
     public void SignUserUp() {
         this.curUser = new User(usrnm_tf.getText(), psswrd_tf.getText(), name_tf.getText(),
-                surname_tf.getText(), email_tf.getText()+"@"+email_tf2.getText(), 
-                bus_cb.isSelected(), afm_ep_tf.getText(), name_ep_tf.getText(), 
-                bday_tf.getText(), ph_num_tf.getText());
+                surname_tf.getText(), email_tf.getText(), bus_cb.isSelected(),
+                afm_ep_tf.getText(), name_ep_tf.getText(), bday_tf.getText(),
+                ph_num_tf.getText());
     }
     
     @SuppressWarnings("unchecked")
@@ -38,9 +38,7 @@ public class SignUp extends javax.swing.JFrame {
         name_lbl = new javax.swing.JLabel();
         surname_lbl = new javax.swing.JLabel();
         email_tf = new javax.swing.JTextField();
-        email_tf2 = new javax.swing.JTextField();
         email_lbl = new javax.swing.JLabel();
-        duck_lbl = new javax.swing.JLabel();
         bday_tf = new javax.swing.JTextField();
         bday_lbl = new javax.swing.JLabel();
         ph_num_lbl = new javax.swing.JLabel();
@@ -91,13 +89,8 @@ public class SignUp extends javax.swing.JFrame {
         email_tf.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         email_tf.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
-        email_tf2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-
         email_lbl.setLabelFor(email_tf);
         email_lbl.setText("e-m@il:");
-
-        duck_lbl.setLabelFor(email_tf2);
-        duck_lbl.setText("@");
 
         bday_tf.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
@@ -163,15 +156,10 @@ public class SignUp extends javax.swing.JFrame {
                         .addComponent(cancel_btn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(signup_btn))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(email_tf)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(duck_lbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(email_tf2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(ph_num_tf)
                     .addComponent(name_ep_tf)
-                    .addComponent(afm_ep_tf))
+                    .addComponent(afm_ep_tf)
+                    .addComponent(email_tf))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -198,10 +186,7 @@ public class SignUp extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(email_lbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(email_tf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(email_tf2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(duck_lbl))
+                .addComponent(email_tf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bday_lbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -232,7 +217,7 @@ public class SignUp extends javax.swing.JFrame {
 
     private void signup_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signup_btnActionPerformed
         SignUserUp();
-        InfoChecking error = new InfoChecking(curUser, psswrd_tf2.getText());
+        Error error = new Error(curUser, psswrd_tf2.getText());
         if (error.getErrormsg().equals("")) {
             new EditDoc().InsertUserInDB(curUser);
             this.dispose();
@@ -262,10 +247,8 @@ public class SignUp extends javax.swing.JFrame {
     private javax.swing.JTextField bday_tf;
     private javax.swing.JCheckBox bus_cb;
     private javax.swing.JButton cancel_btn;
-    private javax.swing.JLabel duck_lbl;
     private javax.swing.JLabel email_lbl;
     private javax.swing.JTextField email_tf;
-    private javax.swing.JTextField email_tf2;
     private javax.swing.JLabel name_ep_lbl;
     private javax.swing.JTextField name_ep_tf;
     private javax.swing.JLabel name_lbl;

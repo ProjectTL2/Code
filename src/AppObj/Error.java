@@ -2,23 +2,26 @@ package AppObj;
 
 import DB.Query;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class InfoChecking {
+public class Error {
     User curUser;
     String errormsg;
     int count;
         
-    public InfoChecking (User curUser, String pass_val){
+    public Error (User curUser, String pass_val){
         String errormsg;
         this.curUser = curUser;
         
         errormsg = checkUsername(curUser.getUsername())
                 + checkPassword(curUser.getPassword(), pass_val)
                 + checkName(curUser.getName(), curUser.getSurname())
-                + checkEmail(curUser.getEmail());
+                + checkEmail(curUser.getEmail())
+                + checkBday(curUser.getBday())
+                + checkPh_num(curUser.ph_num);
         
         this.errormsg = errormsg;
     }
@@ -150,7 +153,79 @@ public class InfoChecking {
         if (!matFound) {
             count++;
             errormsg = errormsg + "\n" + count + ") " + email +
-                    " this doesn't look like an e-m@ail :(";
+                    " doesn't look like an e-m@ail.";
+        }
+        
+        return errormsg;
+    }
+    
+    private String checkBday(String bday) {
+        String errormsg = "";
+        
+        String[] listBday = bday.split("");
+        int temp_count = count;
+        for (String i : listBday) {
+            for (String j : numericals) {
+                if (i.equals(j)) {
+                    break;
+                }
+                else if (j.equals("9")) {
+                    count++;
+                    break;
+                }
+            }
+            if (temp_count < count) {
+                errormsg = errormsg + "\n" + count + ") " +
+                    "A year can only contain numbers.";
+                break;
+            }
+        }
+        
+        if (temp_count == count) {
+            
+            if (bday.length() != 4) {
+                count++;
+                errormsg = errormsg + "\n" + count + ") " +
+                        "A year has 4 numbers (at the moment) \"" + bday +
+                        "\" this doesn't.";
+            }
+
+            int intBday = Integer.parseInt(bday);
+            int curYear = Calendar.getInstance().get(Calendar.YEAR);
+            if (intBday > curYear-16 || intBday < curYear-100) {
+                errormsg = errormsg + "\n" + count + ") " +
+                        "Minors, mummies and time travelers shall not pass.";
+            }
+        }
+        
+        return errormsg;
+    }
+    
+    private String checkPh_num(String phone) {
+        String errormsg = "";
+        
+        String[] listBday = phone.split("");
+        int temp_count = count;
+        for (String i : listBday) {
+            for (String j : numericals) {
+                if (i.equals(j)) {
+                    break;
+                }
+                else if (j.equals("9")) {
+                    count++;
+                    break;
+                }
+            }
+            if (temp_count < count) {
+                errormsg = errormsg + "\n" + count + ") " +
+                    "Pnone NUMBER please.";
+                break;
+            }
+        }
+        
+        if (temp_count == count && phone.length() != 10) {
+            errormsg = errormsg + "\n" + count + ") " +
+                    "Phone numbers contain 10 numbers.";
         }
         
         return errormsg;

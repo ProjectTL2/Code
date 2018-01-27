@@ -21,66 +21,61 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="frame_lbl" alignment="0" pref="234" max="32767" attributes="0"/>
+                  <Component id="frame_lbl" alignment="0" pref="480" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="psswrd_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="oldpsswrd_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="newpsswrd_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="newpsswrd_tf" pref="144" max="32767" attributes="0"/>
-                          <Component id="oldpsswrd_tf" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Component id="submit_btn" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="bday_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="email_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="username_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="phone_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="username_tf" alignment="1" pref="144" max="32767" attributes="0"/>
-                                  <Component id="phone_tf" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="email_tf" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="bday_tf" alignment="1" max="32767" attributes="0"/>
-                              </Group>
-                              <Component id="cancel_btn" alignment="1" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="surname_lbl" alignment="0" min="-2" pref="58" max="-2" attributes="0"/>
-                              <Component id="name_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="name_tf" max="32767" attributes="0"/>
-                              <Component id="surname_tf" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
+                      <Component id="psswrd_lbl" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
+                      <Component id="submit_btn" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="cancel_btn" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="surname_lbl" alignment="0" min="-2" pref="58" max="-2" attributes="0"/>
+                          <Component id="name_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="surname_tf" max="32767" attributes="0"/>
+                          <Component id="name_tf" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="afm_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="name_ep_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="oldpsswrd_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="newpsswrd_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="afm_tf" max="32767" attributes="0"/>
-                          <Component id="name_ep_tf" max="32767" attributes="0"/>
+                          <Component id="oldpsswrd_tf" max="32767" attributes="0"/>
+                          <Component id="newpsswrd_tf" max="32767" attributes="0"/>
+                          <Component id="afm_tf" alignment="0" max="32767" attributes="0"/>
+                          <Component id="name_ep_tf" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="bday_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="email_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="username_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="phone_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="bday_tf" max="32767" attributes="0"/>
+                          <Component id="email_tf" alignment="0" max="32767" attributes="0"/>
+                          <Component id="phone_tf" alignment="0" max="32767" attributes="0"/>
+                          <Component id="username_tf" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -133,15 +128,15 @@
               <Component id="psswrd_lbl" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="oldpsswrd_lbl" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="oldpsswrd_tf" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="oldpsswrd_lbl" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="newpsswrd_lbl" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="newpsswrd_tf" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="newpsswrd_lbl" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="15" max="32767" attributes="0"/>
+              <EmptySpace pref="137" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="submit_btn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="cancel_btn" alignment="3" min="-2" max="-2" attributes="0"/>
