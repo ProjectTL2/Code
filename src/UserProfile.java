@@ -1,5 +1,6 @@
 import AppObj.User;
 import DB.EditDoc;
+import javax.swing.JOptionPane;
 
 public class UserProfile extends javax.swing.JFrame {
     
@@ -13,7 +14,6 @@ public class UserProfile extends javax.swing.JFrame {
         edit_btn.setVisible(isCurUser);
         wish_btn.setVisible(isCurUser);
         sales_btn.setVisible(isCurUser);
-        back_btn.setVisible(isCurUser);
         delete_acc_btn.setVisible(isCurUser);
         
         if (user.getIs_ep()) {
@@ -162,14 +162,22 @@ public class UserProfile extends javax.swing.JFrame {
     }//GEN-LAST:event_edit_btnActionPerformed
 
     private void delete_acc_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_acc_btnActionPerformed
-        this.dispose();
-        new EditDoc().deleteUser(user.getUsername());
-        new MainPage().setVisible(true);
+        Object[] jOptions = {"YES", "NO"};
+        
+        int choice = JOptionPane.showOptionDialog(null, "Your account will be terminated and the programm will shutdown\n"
+                + "are you sure you want to procced?", "WARNING",
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
+                null, jOptions, jOptions[1]);
+        
+        if (choice == 0) {
+            new EditDoc().deleteUser(user.getUsername());
+            this.dispose();
+            System.exit(0);
+        }
     }//GEN-LAST:event_delete_acc_btnActionPerformed
 
     private void back_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_btnActionPerformed
         this.dispose();
-        new MainPage(user).setVisible(true);
     }//GEN-LAST:event_back_btnActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
