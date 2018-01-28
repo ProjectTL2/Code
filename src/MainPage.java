@@ -192,13 +192,13 @@ public class MainPage extends JFrame {
 
     private void search_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_btnActionPerformed
         if (new Query().checkIfQueryExists(search_tf.getText())) {
-            this.hide();
             if (signin_btn.getText().equals("Σύνδεση")) {
-                new SearchResults(search_tf.getText()).setVisible(true);  
+                new SearchResults(search_tf.getText()).setVisible(true);
             }
             else {
                 new SearchResults(search_tf.getText(), curUser).setVisible(true);
             }
+            this.dispose();
         }
         else JOptionPane.showMessageDialog(null, "No matching sale was found.", "Not Found!", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_search_btnActionPerformed
