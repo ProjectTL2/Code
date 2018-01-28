@@ -11,14 +11,13 @@ public class Error {
     Sale newSale;
     int count;
     String errormsg;
+    final private String numericals = "0123456789";
     final private List<String> nonValidChars = Arrays.asList("`", "~", "!", "@",
             "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "=", "+", "[",
             "{", "]", "}", ";", ":", "'", "\"", "\\", "|", ",", "<", ".", ">",
             "/", "?", " ");
-    final private List<String> numericals = Arrays.asList("0", "1", "2", "3",
-            "4", "5", "6", "7", "8", "9");
     
-//<editor-fold defaultstate="collapsed" desc="Constructors, Getter & Setter">
+    //<editor-fold defaultstate="collapsed" desc="Constructors, Getter & Setter">
     public Error() {}
     public Error(String errormsg, int count) {
         this.errormsg = errormsg;
@@ -45,9 +44,9 @@ public class Error {
     public void setErrormsg(String errormsg) {
         this.errormsg = errormsg;
     }
-//</editor-fold>
+    //</editor-fold>
     
-//<editor-fold defaultstate="collapsed" desc="SignUp Checks">
+    //<editor-fold defaultstate="collapsed" desc="SignUp Checks">
     public Error findErrors(User curUser, String pass_val) {
         String errormsg = checkUsername(curUser.getUsername())
                 + checkPassword(curUser.getPassword(), pass_val)
@@ -129,7 +128,8 @@ public class Error {
             }
         }
         
-        for (String i : numericals) {
+        String[] listNumericals = numericals.split("");
+        for (String i : listNumericals) {
             if (name.contains(i) || surname.contains(i)) {
                 count++;
                 errormsg = errormsg + "\n" + count + ") " +
@@ -150,7 +150,7 @@ public class Error {
         if (!matFound) {
             count++;
             errormsg = errormsg + "\n" + count + ") " + email +
-                    " doesn't look like an e-m@ail.";
+                    " doesn't look like an e-m@il.";
         }
         
         return errormsg;
@@ -159,27 +159,12 @@ public class Error {
     private String checkBday(String bday) {
         String errormsg = "";
         
-        String[] listBday = bday.split("");
-        int temp_count = count;
-        for (String i : listBday) {
-            for (String j : numericals) {
-                if (i.equals(j)) {
-                    break;
-                }
-                else if (j.equals("9")) {
-                    count++;
-                    break;
-                }
-            }
-            if (temp_count < count) {
-                errormsg = errormsg + "\n" + count + ") " +
-                    "A year can only contain numbers.";
-                break;
-            }
+        if (!checkIfStringIsInt(bday)) {
+            count++;
+            errormsg = errormsg + "\n" + count + ") " + 
+                    "A year only contains numbers";
         }
-        
-        if (temp_count == count) {
-            
+        else {
             if (bday.length() != 4) {
                 count++;
                 errormsg = errormsg + "\n" + count + ") " +
@@ -202,42 +187,30 @@ public class Error {
     private String checkPh_num(String phone) {
         String errormsg = "";
         
-        String[] listBday = phone.split("");
-        int temp_count = count;
-        for (String i : listBday) {
-            for (String j : numericals) {
-                if (i.equals(j)) {
-                    break;
-                }
-                else if (j.equals("9")) {
-                    count++;
-                    break;
-                }
-            }
-            if (temp_count < count) {
-                errormsg = errormsg + "\n" + count + ") " +
-                    "Pnone NUMBER please.";
-                break;
-            }
-        }
-        
-        if (temp_count == count && phone.length() != 10) {
+        if (!checkIfStringIsInt(phone)) {
             count++;
             errormsg = errormsg + "\n" + count + ") " +
-                    "Phone numbers contain 10 numbers.";
+                    "Phone numbers contain only numbers.";
+        }
+        else if(phone.length() != 10) {
+            count++;
+            errormsg = errormsg + "\n" + count + ") " +
+                    "Phone numbers must contain 10 numbers.";
         }
         
         return errormsg;
     }
-//</editor-fold>
+    //</editor-fold>
     
-//<editor-fold defaultstate="collapsed" desc="AddSale Checks">
+    //<editor-fold defaultstate="collapsed" desc="AddSale Checks">
     public Error findErrors(Sale newSale){        
         newSale.setSale_id(checkId(newSale.getSale_id()));
         if (newSale.getSale_id() == -1) return new Error(" Unable to create new sale,\nplease try again later.",
                 -1, newSale);
         
-        String errormsg = checkTitle(newSale.getTitle());
+        String errormsg = checkTitle(newSale.getTitle())
+                + checkDesc(newSale.getDesc())
+                + checkPrice(String.valueOf(newSale.getPrice()));
         
         return new Error(errormsg, count, newSale);
     }
@@ -247,7 +220,7 @@ public class Error {
         
         while (new Query().checkIfSale_IdExists(id) && count <= 1000) {
             count++;
-            id = new Sale().CreateSaleId();
+            id = (int) (Math.random() * 9999);
         }
         if (count > 1000) id = -1;
         
@@ -265,5 +238,54 @@ public class Error {
         
         return errormsg;
     }
-//</editor-fold>
+    
+    private String checkDesc(String desc) {
+        String errormsg = "";
+        
+        if (desc.length() < 5 || desc.length() > 20) {
+            count++;
+            errormsg = errormsg + "\n" + count + ") " +
+                    "Description of products mustn't exceed 20 characters nor should it be less than 5.";
+        }
+        
+        return errormsg;
+    }
+    
+    private String checkPrice(String price) {
+        String errormsg = "";
+        
+        if (!checkIfStringIsPrice(price)) {
+            count++;
+            errormsg = errormsg + "\n" + count + ") " +
+                    "A price can only contain numbers, you can use \".\" as seperator.";
+        }
+        
+        return errormsg;
+    }
+    //</editor-fold>
+    
+    private boolean checkIfStringIsInt(String string) {
+        String[] listString = string.split("");
+        String[] listNumericals = numericals.split("");
+        
+        for (String i : listString) {
+            for (String j : listNumericals) {
+                if (i.equals(j)) break;
+                else if (j.equals(numericals.substring(numericals.length()-1)))
+                    return false;
+            }
+        }
+        return true;
+    }
+    
+    private boolean checkIfStringIsPrice(String string) {
+        if (checkIfStringIsInt(string)) return true;
+        String[] listString = string.split("");
+        for (String i : listString) {
+            for (String j : nonValidChars) {
+                if (j.equals(i) && !j.equals(".")) return false;
+            }
+        }
+        return true;
+    }
 }

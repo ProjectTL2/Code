@@ -6,7 +6,7 @@ public class SaleItem extends javax.swing.JFrame {
     public SaleItem(Sale curSale) {
         initComponents();
         this.setLocationRelativeTo(null);
-        String price = Double.toString(curSale.getPrice());
+        String price = curSale.getPrice();
         title_lbl.setText(curSale.getTitle());
         price_lbl.setText(price);
         desc_lbl.setText(curSale.getDesc());

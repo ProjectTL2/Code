@@ -1,26 +1,19 @@
 package AppObj;
 
 public class Sale {
-    String user, title, desc, address;
-    double price;
+    String user, title, desc, address, price;
     int sale_id;
 
     public Sale() {}
     
     public Sale(String user, String title, String desc,
-            double price, String address) {
+            String price, String address) {
         this.user = user;
-        sale_id = CreateSaleId();
+        sale_id = (int) (Math.random() * 9999);
         this.title = title;
         this.desc = desc;
         this.price = price;
         this.address = address;
-    }
-    
-    public int CreateSaleId() {
-        int id;
-        id = (int) (Math.random() * 9999);
-        return id;
     }
 
     public int getSale_id() {
@@ -55,11 +48,11 @@ public class Sale {
         this.desc = desc;
     }
 
-    public double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 

@@ -80,7 +80,7 @@ public class Query {
             saleS.setSale_id(saleD.getInteger("Id"));
             saleS.setTitle(saleD.getString("Title"));
             saleS.setDesc(saleD.getString("Desc"));
-            saleS.setPrice(saleD.getDouble("Price"));
+            saleS.setPrice(saleD.getString("Price"));
             saleS.setAddress(saleD.getString("Address"));
 
             sales.add(saleS);

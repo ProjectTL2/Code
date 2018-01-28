@@ -1,7 +1,9 @@
 import AppObj.Sale;
+import AppObj.SaleError;
 import AppObj.User;
 import DB.EditDoc;
 import javax.swing.JOptionPane;
+import static jdk.nashorn.internal.objects.NativeString.substring;
 
 public class AddSale extends javax.swing.JFrame {
     
@@ -16,7 +18,7 @@ public class AddSale extends javax.swing.JFrame {
     
     public void addSale() {
         this.newSale = new Sale(curUser.getUsername(), prd_title_tf.getText(), prd_desc_tf.getText(),
-                Double.parseDouble(prd_price_tf.getText()), address_tf.getText());
+                prd_price_tf.getText(), address_tf.getText());
     }
     
     @SuppressWarnings("unchecked")
@@ -142,14 +144,24 @@ public class AddSale extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cancel_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel_btnActionPerformed
-        this.hide();
+        this.dispose();
     }//GEN-LAST:event_cancel_btnActionPerformed
 
     private void add_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_btnActionPerformed
         addSale();
-        new EditDoc().InsertSaleInDB(newSale);
-        JOptionPane.showMessageDialog(null, "Η αγγελία σας προστέθηκε με επιτυχία.", "", JOptionPane.INFORMATION_MESSAGE);
-        this.hide();
+        SaleError error = new SaleError(newSale);
+        if (error.getErrormsg().equals("")) {
+            new EditDoc().InsertSaleInDB(newSale);
+            this.dispose();
+        }
+        else if (error.getCount() == -1){
+            JOptionPane.showMessageDialog(null, substring(error.getErrormsg(), 1),
+                    "Unable to create ID.", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else {
+            JOptionPane.showMessageDialog(null, substring(error.getErrormsg(), 1),
+                    "Error(s) found: " + error.getCount(), JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_add_btnActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
