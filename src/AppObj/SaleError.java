@@ -1,12 +1,12 @@
 package AppObj;
 
 public class SaleError extends Error {
-    Sale newSale;
 
     public SaleError(Sale newSale) {
         this.newSale = newSale;
-        this.errormsg = "";
-        this.count = 0;
+        Error error = new Error().findErrors(newSale);
+        this.errormsg = error.getErrormsg();
+        this.count = error.getCount();
     }
 
     public Sale getNewSale() {

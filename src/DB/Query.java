@@ -27,6 +27,13 @@ public class Query {
         return cursor.hasNext();
     }
     
+    public boolean checkIfSale_IdExists(int id) {
+        DBCon x = new DBCon();
+        DBCursor cursor = x.dbcollection_user.find(new BasicDBObject("Id", id));
+        
+        return cursor.hasNext();
+    }
+    
     public User returnUser(String username) {
         DBCon x = new DBCon();
         

@@ -1,8 +1,5 @@
 package AppObj;
 
-import DB.EditDoc;
-import GeoLoc.Geocode;
-
 public class Sale {
     String user, title, desc, address;
     double price;
@@ -20,9 +17,9 @@ public class Sale {
         this.address = address;
     }
     
-    private int CreateSaleId() {
+    public int CreateSaleId() {
         int id;
-        id = (int) (Math.random() * 1000);
+        id = (int) (Math.random() * 9999);
         return id;
     }
 

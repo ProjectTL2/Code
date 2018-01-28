@@ -8,6 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Error {
+    Sale newSale;
     int count;
     String errormsg;
     final private List<String> nonValidChars = Arrays.asList("`", "~", "!", "@",
@@ -17,9 +18,14 @@ public class Error {
     final private List<String> numericals = Arrays.asList("0", "1", "2", "3",
             "4", "5", "6", "7", "8", "9");
     
-//<editor-fold defaultstate="collapsed" desc="Constructor, Getter & Setter">
+//<editor-fold defaultstate="collapsed" desc="Constructors, Getter & Setter">
     public Error() {}
     public Error(String errormsg, int count) {
+        this.errormsg = errormsg;
+        this.count = count;
+    }
+    public Error(String errormsg, int count, Sale newSale) {
+        this.newSale = newSale;
         this.errormsg = errormsg;
         this.count = count;
     }
@@ -226,6 +232,38 @@ public class Error {
 //</editor-fold>
     
 //<editor-fold defaultstate="collapsed" desc="AddSale Checks">
+    public Error findErrors(Sale newSale){        
+        newSale.setSale_id(checkId(newSale.getSale_id()));
+        if (newSale.getSale_id() == -1) return new Error(" Unable to create new sale,\nplease try again later.",
+                -1, newSale);
+        
+        String errormsg = checkTitle(newSale.getTitle());
+        
+        return new Error(errormsg, count, newSale);
+    }
     
+    private int checkId(int id) {
+        int count = 0;
+        
+        while (new Query().checkIfSale_IdExists(id) && count <= 1000) {
+            count++;
+            id = new Sale().CreateSaleId();
+        }
+        if (count > 1000) id = -1;
+        
+        return id;
+    }
+    
+    private String checkTitle(String title) {
+        String errormsg = "";
+        
+        if (title.length() < 5 || title.length() > 15) {
+            count++;
+            errormsg = errormsg + "\n" + count + ") " +
+                    "Title must >5 & 16>.";
+        }
+        
+        return errormsg;
+    }
 //</editor-fold>
 }

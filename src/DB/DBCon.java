@@ -9,8 +9,6 @@ import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 
 public class DBCon {
-
-    public DBCon() {}
     
     MongoClientURI uri  = new MongoClientURI("mongodb://elafaki:12345@ds042687.mlab.com:42687/project_tl"); 
     MongoClient client = new MongoClient(uri);
@@ -29,4 +27,6 @@ public class DBCon {
     
     //Images.java
     public DB db_img = client.getDB("project_tl");
+    
+    public DBCon() {}
 }
