@@ -1,5 +1,8 @@
 import AppObj.User;
+import AppObj.UserError;
 import DB.EditDoc;
+import javax.swing.JOptionPane;
+import static jdk.nashorn.internal.objects.NativeString.substring;
 
 public class EditProfile extends javax.swing.JFrame {
     
@@ -247,9 +250,15 @@ public class EditProfile extends javax.swing.JFrame {
 
     private void submit_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submit_btnActionPerformed
         initnewUser();
-        new EditDoc().updateUser(curUser, newUser);
-        this.dispose();
-        new UserProfile(newUser, true).setVisible(true);
+        UserError error = new UserError(curUser, oldpsswrd_tf.getText());
+        if (error.getErrormsg().equals("")) {
+            new EditDoc().InsertUserInDB(curUser);
+            this.dispose();
+            new MainPage().setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, substring(error.getErrormsg(), 1),
+                    "Error(s) found: " + error.getCount(), JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_submit_btnActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
