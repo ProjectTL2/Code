@@ -52,10 +52,10 @@ public class EditDoc {
                 new BasicDBObject().append("Username", usernm));
     }
     
-    public void updateUser(User user, User newuser){
+    public void updateUser(String username, User newuser){
         DBCon x = new DBCon();
         
-        BasicDBObject query = new BasicDBObject().append("Username", user.getUsername());
+        BasicDBObject query = new BasicDBObject().append("Username", username);
         
         x.dbcollection_user.update(query,
                 new BasicDBObject().append("Username", newuser.getUsername())

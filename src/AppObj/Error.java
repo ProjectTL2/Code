@@ -46,6 +46,73 @@ public class Error {
     }
     //</editor-fold>
     
+    //<editor-fold defaultstate="collapsed" desc="Update Checks">
+    public Error findErrors(User newUser, User curUser, String old_pass) {
+        String errormsg = checkUsername(newUser.getUsername(), curUser.getUsername())
+                + checkName(newUser.getName(), newUser.getSurname())
+                + checkEmail(newUser.getEmail())
+                + checkBday(newUser.getBday())
+                + checkPh_num(newUser.ph_num);
+        if (!old_pass.equals("")) errormsg = errormsg +
+                checkPassword(curUser.getPassword(), newUser.getPassword(), old_pass);
+        return new Error(errormsg, count);
+    }
+    
+    private String checkUsername(String newUsername, String oldUsername) {
+        String errormsg = "";
+        
+        if (!oldUsername.equals(newUsername)) {
+            if (new Query().checkIfUsrnmExists(newUsername)) {
+                count++;
+                errormsg = errormsg + "\n" + count + ") " +
+                        "Username already exists.";
+            }
+
+            if (newUsername.equals("")) {
+                count++;
+                errormsg = errormsg + "\n" + count + ") " +
+                        "Empty Username isn't valid.";
+            }
+
+            for (String i : nonValidChars) {
+                if (newUsername.contains(i)) {
+                    count++;
+                    errormsg = errormsg + "\n" + count + ") " +
+                            "Use of special charcters like \"" + i +
+                            "\" in the Username isn't valid.";
+                    break;
+                }
+            }
+        }
+        
+        return errormsg;
+    }
+    
+    private String checkPassword(String password, String newpass, String oldpass) {
+        String errormsg = "";
+                
+        if (!password.equals(oldpass)) {
+            count++;
+            errormsg = errormsg + "\n" + count + ") " +
+                    "Validate the password by typing it twice.";
+        }
+        
+        if (newpass.equals("")) {
+            count++;
+            errormsg = errormsg + "\n" + count + ") " +
+                    "Empty Password isn't valid.";
+        }
+        
+        if (newpass.contains(" ")) {
+            count++;
+            errormsg = errormsg + "\n" + count + ") " +
+                    "Spaces are not allowed in the Password.";
+        }
+        
+        return errormsg;
+    }
+    //</editor-fold>
+    
     //<editor-fold defaultstate="collapsed" desc="SignUp Checks">
     public Error findErrors(User curUser, String pass_val) {
         String errormsg = checkUsername(curUser.getUsername())
@@ -56,7 +123,7 @@ public class Error {
                 + checkPh_num(curUser.ph_num);
         return new Error(errormsg, count);
     }
-    
+        
     private String checkUsername(String username) {
         String errormsg = "";
         
@@ -100,7 +167,7 @@ public class Error {
                     "Empty Password isn't valid.";
         }
         
-        if (password.contains(" ") && !password.equals("")) {
+        if (password.contains(" ")) {
             count++;
             errormsg = errormsg + "\n" + count + ") " +
                     "Spaces are not allowed in the Password.";
@@ -204,7 +271,7 @@ public class Error {
     
     //<editor-fold defaultstate="collapsed" desc="AddSale Checks">
     public Error findErrors(Sale newSale){        
-        newSale.setSale_id(checkId(newSale.getSale_id()));
+        newSale.setSale_id(createId(newSale.getSale_id()));
         if (newSale.getSale_id() == -1) return new Error(" Unable to create new sale,\nplease try again later.",
                 -1, newSale);
         
@@ -215,7 +282,7 @@ public class Error {
         return new Error(errormsg, count, newSale);
     }
     
-    private int checkId(int id) {
+    private int createId(int id) {
         int count = 0;
         
         while (new Query().checkIfSale_IdExists(id) && count <= 1000) {

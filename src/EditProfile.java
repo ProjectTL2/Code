@@ -29,8 +29,11 @@ public class EditProfile extends javax.swing.JFrame {
         email_tf.setText(curUser.getEmail());
         phone_tf.setText(curUser.getPh_num());
         username_tf.setText(curUser.getUsername());
-        afm_tf.setText(curUser.getAfm_ep());
-        name_ep_tf.setText(curUser.getName_ep());
+        
+        if (curUser.getIs_ep()) {
+            afm_tf.setText(curUser.getAfm_ep());
+            name_ep_tf.setText(curUser.getName_ep());
+        }
     }
     
     private void initnewUser() {
@@ -40,10 +43,18 @@ public class EditProfile extends javax.swing.JFrame {
         newUser.setEmail(email_tf.getText());
         newUser.setPh_num(phone_tf.getText());
         newUser.setUsername(username_tf.getText());
-        newUser.setPassword(newpsswrd_tf.getText());
+        
+        if (change_pass_cb.isSelected()) newUser.setPassword(newpsswrd_tf.getText());
+        else newUser.setPassword(curUser.getPassword());
+        
         newUser.setIs_ep(curUser.getIs_ep());
-        newUser.setAfm_ep(afm_tf.getText());
-        newUser.setName_ep(name_ep_tf.getText());
+        if (curUser.getIs_ep()) {
+            newUser.setAfm_ep(afm_tf.getText());
+            newUser.setName_ep(name_ep_tf.getText());
+        } else {
+            newUser.setAfm_ep(curUser.getAfm_ep());
+            newUser.setName_ep(curUser.getName_ep());
+        }
     }
     
     @SuppressWarnings("unchecked")
@@ -74,6 +85,7 @@ public class EditProfile extends javax.swing.JFrame {
         afm_tf = new javax.swing.JTextField();
         name_ep_lbl = new javax.swing.JLabel();
         name_ep_tf = new javax.swing.JTextField();
+        change_pass_cb = new javax.swing.JCheckBox();
 
         frame_lbl.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         frame_lbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -129,6 +141,10 @@ public class EditProfile extends javax.swing.JFrame {
             }
         });
 
+        oldpsswrd_tf.setEnabled(false);
+
+        newpsswrd_tf.setEnabled(false);
+
         afm_lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         afm_lbl.setLabelFor(afm_tf);
         afm_lbl.setText("ΑΦΜ:");
@@ -136,6 +152,12 @@ public class EditProfile extends javax.swing.JFrame {
         name_ep_lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         name_ep_lbl.setLabelFor(name_ep_tf);
         name_ep_lbl.setText("Όνομα Επ.:");
+
+        change_pass_cb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                change_pass_cbActionPerformed(evt);
+            }
+        });
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -145,9 +167,6 @@ public class EditProfile extends javax.swing.JFrame {
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(frame_lbl, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
-                    .add(layout.createSequentialGroup()
-                        .add(psswrd_lbl)
-                        .add(0, 0, Short.MAX_VALUE))
                     .add(layout.createSequentialGroup()
                         .add(submit_btn)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -162,18 +181,6 @@ public class EditProfile extends javax.swing.JFrame {
                             .add(name_tf)))
                     .add(layout.createSequentialGroup()
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(afm_lbl)
-                            .add(name_ep_lbl)
-                            .add(oldpsswrd_lbl)
-                            .add(newpsswrd_lbl))
-                        .add(18, 18, 18)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(oldpsswrd_tf)
-                            .add(newpsswrd_tf)
-                            .add(afm_tf)
-                            .add(name_ep_tf)))
-                    .add(layout.createSequentialGroup()
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(bday_lbl)
                             .add(email_lbl)
                             .add(username_lbl)
@@ -183,7 +190,23 @@ public class EditProfile extends javax.swing.JFrame {
                             .add(bday_tf)
                             .add(email_tf)
                             .add(phone_tf)
-                            .add(username_tf))))
+                            .add(username_tf)))
+                    .add(layout.createSequentialGroup()
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(afm_lbl)
+                            .add(name_ep_lbl)
+                            .add(oldpsswrd_lbl)
+                            .add(newpsswrd_lbl)
+                            .add(psswrd_lbl))
+                        .add(18, 18, 18)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(layout.createSequentialGroup()
+                                .add(change_pass_cb)
+                                .add(0, 0, Short.MAX_VALUE))
+                            .add(oldpsswrd_tf)
+                            .add(newpsswrd_tf)
+                            .add(afm_tf)
+                            .add(name_ep_tf))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -224,7 +247,9 @@ public class EditProfile extends javax.swing.JFrame {
                     .add(name_ep_tf, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(name_ep_lbl, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(psswrd_lbl)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(psswrd_lbl)
+                    .add(change_pass_cb))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(oldpsswrd_tf, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -250,16 +275,28 @@ public class EditProfile extends javax.swing.JFrame {
 
     private void submit_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submit_btnActionPerformed
         initnewUser();
-        UserError error = new UserError(curUser, oldpsswrd_tf.getText());
-        if (error.getErrormsg().equals("")) {
-            new EditDoc().InsertUserInDB(curUser);
-            this.dispose();
-            new MainPage().setVisible(true);
-        } else {
+        UserError error = new UserError(newUser, curUser, oldpsswrd_tf.getText());
+        Object[] jOptions = {"YES", "NO"};
+        int choice = JOptionPane.showOptionDialog(null, "By Updating your profile the programm will shut itself down.\nContinue?",
+                "WARNING", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
+                null, jOptions, jOptions[1]);
+        
+        if (error.getErrormsg().equals("") && choice == 0) {
+            new EditDoc().updateUser(curUser.getUsername(), newUser);
+            System.exit(0);
+        }
+        else if(!error.getErrormsg().equals("")) {
             JOptionPane.showMessageDialog(null, substring(error.getErrormsg(), 1),
                     "Error(s) found: " + error.getCount(), JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_submit_btnActionPerformed
+
+    private void change_pass_cbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_change_pass_cbActionPerformed
+        oldpsswrd_tf.setEnabled(!oldpsswrd_tf.isEnabled());
+        newpsswrd_tf.setEnabled(!newpsswrd_tf.isEnabled());
+        oldpsswrd_tf.setText("");
+        newpsswrd_tf.setText("");
+    }//GEN-LAST:event_change_pass_cbActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel afm_lbl;
@@ -267,6 +304,7 @@ public class EditProfile extends javax.swing.JFrame {
     private javax.swing.JLabel bday_lbl;
     private javax.swing.JTextField bday_tf;
     private javax.swing.JButton cancel_btn;
+    private javax.swing.JCheckBox change_pass_cb;
     private javax.swing.JLabel email_lbl;
     private javax.swing.JTextField email_tf;
     private javax.swing.JLabel frame_lbl;

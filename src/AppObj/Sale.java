@@ -9,7 +9,7 @@ public class Sale {
     public Sale(String user, String title, String desc,
             String price, String address) {
         this.user = user;
-        sale_id = (int) (Math.random() * 9999);
+        this.sale_id = 0;
         this.title = title;
         this.desc = desc;
         this.price = price;

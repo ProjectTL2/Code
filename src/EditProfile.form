@@ -24,10 +24,6 @@
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="frame_lbl" alignment="0" pref="480" max="32767" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="psswrd_lbl" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
                   <Group type="102" attributes="0">
                       <Component id="submit_btn" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
@@ -46,21 +42,6 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="afm_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="name_ep_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="oldpsswrd_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="newpsswrd_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="oldpsswrd_tf" max="32767" attributes="0"/>
-                          <Component id="newpsswrd_tf" max="32767" attributes="0"/>
-                          <Component id="afm_tf" alignment="0" max="32767" attributes="0"/>
-                          <Component id="name_ep_tf" alignment="0" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="bday_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="email_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="username_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -72,6 +53,26 @@
                           <Component id="email_tf" alignment="0" max="32767" attributes="0"/>
                           <Component id="phone_tf" alignment="0" max="32767" attributes="0"/>
                           <Component id="username_tf" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="afm_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="name_ep_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="oldpsswrd_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="newpsswrd_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="psswrd_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="change_pass_cb" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="oldpsswrd_tf" max="32767" attributes="0"/>
+                          <Component id="newpsswrd_tf" max="32767" attributes="0"/>
+                          <Component id="afm_tf" alignment="0" max="32767" attributes="0"/>
+                          <Component id="name_ep_tf" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -125,7 +126,10 @@
                   <Component id="name_ep_lbl" alignment="3" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="psswrd_lbl" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="psswrd_lbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="change_pass_cb" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="oldpsswrd_tf" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -284,8 +288,14 @@
     <Component class="javax.swing.JTextField" name="username_tf">
     </Component>
     <Component class="javax.swing.JTextField" name="oldpsswrd_tf">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="newpsswrd_tf">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="afm_lbl">
       <Properties>
@@ -312,6 +322,11 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="name_ep_tf">
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="change_pass_cb">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="change_pass_cbActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
