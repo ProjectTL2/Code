@@ -46,6 +46,8 @@ public class UserProfile extends javax.swing.JFrame {
         delete_acc_btn = new javax.swing.JButton();
         back_btn = new javax.swing.JButton();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -188,6 +190,7 @@ public class UserProfile extends javax.swing.JFrame {
     }//GEN-LAST:event_delete_acc_btnActionPerformed
 
     private void back_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_btnActionPerformed
+        new MainPage(user);
         this.dispose();
     }//GEN-LAST:event_back_btnActionPerformed
     

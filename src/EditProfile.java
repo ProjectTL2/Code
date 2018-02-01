@@ -87,6 +87,8 @@ public class EditProfile extends javax.swing.JFrame {
         name_ep_tf = new javax.swing.JTextField();
         change_pass_cb = new javax.swing.JCheckBox();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
         frame_lbl.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         frame_lbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         frame_lbl.setText("Επεξεργασία Προφίλ");
