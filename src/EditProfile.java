@@ -276,16 +276,13 @@ public class EditProfile extends javax.swing.JFrame {
     private void submit_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submit_btnActionPerformed
         initnewUser();
         UserError error = new UserError(newUser, curUser, oldpsswrd_tf.getText());
-        Object[] jOptions = {"YES", "NO"};
-        int choice = JOptionPane.showOptionDialog(null, "By Updating your profile the programm will shut itself down.\nContinue?",
-                "WARNING", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
-                null, jOptions, jOptions[1]);
         
-        if (error.getErrormsg().equals("") && choice == 0) {
+        if (error.getErrormsg().equals("")) {
             new EditDoc().updateUser(curUser.getUsername(), newUser);
-            System.exit(0);
+            new MainPage(newUser).setVisible(true);
+            this.dispose();
         }
-        else if(!error.getErrormsg().equals("")) {
+        else {
             JOptionPane.showMessageDialog(null, substring(error.getErrormsg(), 1),
                     "Error(s) found: " + error.getCount(), JOptionPane.INFORMATION_MESSAGE);
         }
