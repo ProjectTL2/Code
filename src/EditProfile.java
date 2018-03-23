@@ -88,46 +88,57 @@ public class EditProfile extends javax.swing.JFrame {
         change_pass_cb = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         frame_lbl.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         frame_lbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         frame_lbl.setText("Επεξεργασία Προφίλ");
         frame_lbl.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        getContentPane().add(frame_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 480, -1));
 
         name_lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         name_lbl.setLabelFor(name_tf);
         name_lbl.setText("Όνομα:");
+        getContentPane().add(name_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 39, -1, 20));
 
         surname_lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         surname_lbl.setLabelFor(surname_tf);
         surname_lbl.setText("Επύθετο:");
+        getContentPane().add(surname_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 67, -1, 20));
 
         bday_lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         bday_lbl.setLabelFor(bday_tf);
         bday_lbl.setText("Ημ/Γέννησης:");
+        getContentPane().add(bday_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 95, -1, 24));
 
         email_lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         email_lbl.setLabelFor(email_tf);
         email_lbl.setText("E-mail:");
+        getContentPane().add(email_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 125, -1, -1));
 
         phone_lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         phone_lbl.setLabelFor(phone_tf);
         phone_lbl.setText("Τηλέφωνο:");
+        getContentPane().add(phone_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 151, -1, -1));
 
         username_lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         username_lbl.setLabelFor(username_tf);
         username_lbl.setText("Username:");
+        getContentPane().add(username_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 177, -1, -1));
 
         psswrd_lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         psswrd_lbl.setText("Password:");
+        getContentPane().add(psswrd_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 255, -1, -1));
 
         oldpsswrd_lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         oldpsswrd_lbl.setLabelFor(oldpsswrd_tf);
         oldpsswrd_lbl.setText("Old:");
+        getContentPane().add(oldpsswrd_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 283, -1, -1));
 
         newpsswrd_lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         newpsswrd_lbl.setLabelFor(newpsswrd_tf);
         newpsswrd_lbl.setText("New:");
+        getContentPane().add(newpsswrd_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 309, -1, -1));
 
         submit_btn.setText("Submit");
         submit_btn.addActionListener(new java.awt.event.ActionListener() {
@@ -135,6 +146,7 @@ public class EditProfile extends javax.swing.JFrame {
                 submit_btnActionPerformed(evt);
             }
         });
+        getContentPane().add(submit_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 466, -1, -1));
 
         cancel_btn.setText("Cancel");
         cancel_btn.addActionListener(new java.awt.event.ActionListener() {
@@ -142,130 +154,38 @@ public class EditProfile extends javax.swing.JFrame {
                 cancel_btnActionPerformed(evt);
             }
         });
+        getContentPane().add(cancel_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(425, 466, -1, -1));
+        getContentPane().add(name_tf, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 41, 418, -1));
+        getContentPane().add(surname_tf, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 69, 418, -1));
+        getContentPane().add(bday_tf, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 99, 390, -1));
+        getContentPane().add(email_tf, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 125, 390, -1));
+        getContentPane().add(phone_tf, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 151, 390, -1));
+        getContentPane().add(username_tf, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 177, 390, -1));
 
         oldpsswrd_tf.setEnabled(false);
+        getContentPane().add(oldpsswrd_tf, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 283, 390, -1));
 
         newpsswrd_tf.setEnabled(false);
+        getContentPane().add(newpsswrd_tf, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 309, 390, -1));
 
         afm_lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         afm_lbl.setLabelFor(afm_tf);
         afm_lbl.setText("ΑΦΜ:");
+        getContentPane().add(afm_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 203, -1, -1));
+        getContentPane().add(afm_tf, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 203, 390, -1));
 
         name_ep_lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         name_ep_lbl.setLabelFor(name_ep_tf);
         name_ep_lbl.setText("Όνομα Επ.:");
+        getContentPane().add(name_ep_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 229, -1, -1));
+        getContentPane().add(name_ep_tf, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 229, 390, -1));
 
         change_pass_cb.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 change_pass_cbActionPerformed(evt);
             }
         });
-
-        org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .addContainerGap()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(frame_lbl, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
-                    .add(layout.createSequentialGroup()
-                        .add(submit_btn)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .add(cancel_btn))
-                    .add(layout.createSequentialGroup()
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(surname_lbl, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 58, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(name_lbl))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(surname_tf)
-                            .add(name_tf)))
-                    .add(layout.createSequentialGroup()
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(bday_lbl)
-                            .add(email_lbl)
-                            .add(username_lbl)
-                            .add(phone_lbl))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(bday_tf)
-                            .add(email_tf)
-                            .add(phone_tf)
-                            .add(username_tf)))
-                    .add(layout.createSequentialGroup()
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(afm_lbl)
-                            .add(name_ep_lbl)
-                            .add(oldpsswrd_lbl)
-                            .add(newpsswrd_lbl)
-                            .add(psswrd_lbl))
-                        .add(18, 18, 18)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(layout.createSequentialGroup()
-                                .add(change_pass_cb)
-                                .add(0, 0, Short.MAX_VALUE))
-                            .add(oldpsswrd_tf)
-                            .add(newpsswrd_tf)
-                            .add(afm_tf)
-                            .add(name_ep_tf))))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .add(frame_lbl)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(name_tf, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(name_lbl, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 20, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(surname_tf, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(surname_lbl, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 20, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(bday_lbl, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 24, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(bday_tf, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(email_lbl)
-                    .add(email_tf, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(phone_lbl)
-                    .add(phone_tf, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(username_lbl)
-                    .add(username_tf, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(afm_tf, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(afm_lbl))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(name_ep_tf, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(name_ep_lbl, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(psswrd_lbl)
-                    .add(change_pass_cb))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(oldpsswrd_tf, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(oldpsswrd_lbl))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(newpsswrd_tf, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(newpsswrd_lbl))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 137, Short.MAX_VALUE)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(submit_btn)
-                    .add(cancel_btn))
-                .addContainerGap())
-        );
+        getContentPane().add(change_pass_cb, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 255, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
