@@ -1,3 +1,5 @@
+package UI;
+
 import AppObj.Sale;
 import AppObj.User;
 import DB.Query;
@@ -74,9 +76,7 @@ public class SearchResults extends javax.swing.JFrame {
         results_p = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(2560, 1440));
         setMinimumSize(new java.awt.Dimension(1280, 720));
-        setPreferredSize(new java.awt.Dimension(1280, 720));
         setSize(new java.awt.Dimension(1280, 720));
 
         back_btn.setText("Back");

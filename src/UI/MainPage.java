@@ -1,3 +1,5 @@
+package UI;
+
 import AppObj.User;
 import DB.Query;
 import GeoLoc.Geocode;
@@ -57,7 +59,6 @@ public class MainPage extends JFrame {
         setBackground(new java.awt.Color(255, 51, 51));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setForeground(new java.awt.Color(240, 240, 240));
-        setMaximumSize(new java.awt.Dimension(2560, 1440));
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setSize(new java.awt.Dimension(1280, 720));
 

@@ -1,3 +1,5 @@
+package UI;
+
 import AppObj.User;
 import AppObj.UserError;
 import DB.EditDoc;

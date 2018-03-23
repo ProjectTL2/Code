@@ -1,3 +1,5 @@
+package UI;
+
 import DB.Images;
 import javax.swing.ImageIcon;
 

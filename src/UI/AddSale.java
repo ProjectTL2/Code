@@ -1,3 +1,5 @@
+package UI;
+
 import AppObj.Sale;
 import AppObj.SaleError;
 import AppObj.User;

@@ -1,3 +1,5 @@
+package UI;
+
 import AppObj.User;
 import DB.Query;
 import javax.swing.JOptionPane;
