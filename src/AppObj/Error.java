@@ -6,7 +6,6 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-//a
 
 public class Error {
     Sale newSale;
