@@ -10,7 +10,7 @@ import org.bson.Document;
 
 public class DBCon {
     
-    MongoClientURI uri  = new MongoClientURI("mongodb://elafaki:12345@ds042687.mlab.com:42687/project_tl"); 
+    MongoClientURI uri  = new MongoClientURI("mongodb+srv://admin:12345@cluster0-hii5d.azure.mongodb.net/test?retryWrites=true"); 
     MongoClient client = new MongoClient(uri);
     
     //EditDoc.java
